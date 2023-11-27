@@ -12,6 +12,7 @@ const data = [
     author: 'John Doe',
     date: '2023-11-27',
     tags: ['React', 'Ant Design', 'UI'],
+    likes: 3,
   },
   {
     title: 'Ant Design Title 2',
@@ -19,6 +20,7 @@ const data = [
     author: 'Jane Doe',
     date: '2023-11-28',
     tags: ['JavaScript', 'Frontend', 'Design'],
+    likes: 6,
   },
   {
     title: 'Ant Design Title 3',
@@ -26,6 +28,7 @@ const data = [
     author: 'Bob Smith',
     date: '2023-11-29',
     tags: ['CSS', 'Web Development'],
+    likes: 9,
   },
   {
     title: 'Ant Design Title 4',
@@ -33,6 +36,103 @@ const data = [
     author: 'Alice Johnson',
     date: '2023-11-30',
     tags: ['UI/UX', 'Responsive Design'],
+    likes: 12,
+  },
+  {
+    title: 'Ant Design Title 1',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'John Doe',
+    date: '2023-11-27',
+    tags: ['React', 'Ant Design', 'UI'],
+    likes: 3,
+  },
+  {
+    title: 'Ant Design Title 2',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Jane Doe',
+    date: '2023-11-28',
+    tags: ['JavaScript', 'Frontend', 'Design'],
+    likes: 6,
+  },
+  {
+    title: 'Ant Design Title 3',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Bob Smith',
+    date: '2023-11-29',
+    tags: ['CSS', 'Web Development'],
+    likes: 9,
+  },
+  {
+    title: 'Ant Design Title 4',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Alice Johnson',
+    date: '2023-11-30',
+    tags: ['UI/UX', 'Responsive Design'],
+    likes: 12,
+  },
+  {
+    title: 'Ant Design Title 1',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'John Doe',
+    date: '2023-11-27',
+    tags: ['React', 'Ant Design', 'UI'],
+    likes: 3,
+  },
+  {
+    title: 'Ant Design Title 2',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Jane Doe',
+    date: '2023-11-28',
+    tags: ['JavaScript', 'Frontend', 'Design'],
+    likes: 6,
+  },
+  {
+    title: 'Ant Design Title 3',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Bob Smith',
+    date: '2023-11-29',
+    tags: ['CSS', 'Web Development'],
+    likes: 9,
+  },
+  {
+    title: 'Ant Design Title 4',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Alice Johnson',
+    date: '2023-11-30',
+    tags: ['UI/UX', 'Responsive Design'],
+    likes: 12,
+  },
+  {
+    title: 'Ant Design Title 1',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'John Doe',
+    date: '2023-11-27',
+    tags: ['React', 'Ant Design', 'UI'],
+    likes: 3,
+  },
+  {
+    title: 'Ant Design Title 2',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Jane Doe',
+    date: '2023-11-28',
+    tags: ['JavaScript', 'Frontend', 'Design'],
+    likes: 6,
+  },
+  {
+    title: 'Ant Design Title 3',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Bob Smith',
+    date: '2023-11-29',
+    tags: ['CSS', 'Web Development'],
+    likes: 9,
+  },
+  {
+    title: 'Ant Design Title 4',
+    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
+    author: 'Alice Johnson',
+    date: '2023-11-30',
+    tags: ['UI/UX', 'Responsive Design'],
+    likes: 12,
   },
 ]
 
@@ -42,6 +142,7 @@ function ArticleList() {
       itemLayout="vertical"
       size="large"
       dataSource={data}
+      pagination={{ defaultPageSize: 5, hideOnSinglePage: true }}
       renderItem={(item) => (
         <List.Item
           key={item.title}
@@ -53,7 +154,7 @@ function ArticleList() {
                 <div>
                   <a href="#">{item.title}</a>
                   <ArticleRate />
-                  <span> 999 </span>
+                  <span>{item.likes}</span>
                 </div>
 
                 <span>{item.author}</span>

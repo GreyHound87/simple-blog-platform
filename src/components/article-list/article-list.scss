@@ -3,3 +3,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+.ant-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Регулируйте отступ сверху по вашему усмотрению */
+}
