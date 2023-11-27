@@ -1,6 +1,8 @@
 import React from 'react'
 import { List, Avatar } from 'antd'
 
+import './article-list.scss'
+
 const data = [
   {
     title: 'Ant Design Title 1',
@@ -27,15 +29,20 @@ function ArticleList() {
       size="large"
       dataSource={data}
       renderItem={(item) => (
-        <List.Item key={item.title}>
+        <List.Item key={item.title} extra={<Avatar src="https://via.placeholder.com/48" />}>
           <List.Item.Meta
             title={
-              <>
+              <div className="title-wrapper">
                 <a href="#">{item.title}</a>
-                <Avatar src="https://via.placeholder.com/48" />
-              </>
+                <span> Ivanov Ivan Ivanovich</span>
+              </div>
             }
-            description={item.content}
+            description={
+              <div className="description-wrapper">
+                <div className="tags-container"> tag </div>
+                <span> date </span>
+              </div>
+            }
           />
           {item.content}
         </List.Item>
