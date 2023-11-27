@@ -1,6 +1,7 @@
 import React from 'react'
-import { List, Avatar, Tag, Rate } from 'antd'
-import { HeartOutlined, HeartFilled } from '@ant-design/icons'
+import { List, Avatar, Tag } from 'antd'
+
+import ArticleRate from '../article-rate/article-rate'
 
 import './article-list.scss'
 
@@ -42,14 +43,16 @@ function ArticleList() {
       size="large"
       dataSource={data}
       renderItem={(item) => (
-        <List.Item key={item.title} extra={<Avatar src="https://via.placeholder.com/48" />}>
+        <List.Item
+          key={item.title}
+          extra={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" size={46} />}
+        >
           <List.Item.Meta
             title={
               <div className="title-wrapper">
                 <div>
                   <a href="#">{item.title}</a>
-                  <Rate character={<HeartOutlined />} count={1} style={{ color: 'rgba(255, 7, 7, 1)' }} />
-                  <Rate character={<HeartFilled />} count={1} style={{ color: 'rgba(255, 7, 7, 1)' }} />
+                  <ArticleRate />
                   <span> 999 </span>
                 </div>
 
