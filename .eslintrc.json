@@ -35,8 +35,9 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": ["error", { "caseSensitive": false }],
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "react/jsx-wrap-multilines": ["error", {"declaration": false, "assignment": false}],
+    "react/jsx-wrap-multilines": ["error", { "declaration": false, "assignment": false }],
     "react/state-in-constructor": 0,
+    "object-curly-newline": ["error", { "consistent": true }],
     "import/order": [
       2,
       {
