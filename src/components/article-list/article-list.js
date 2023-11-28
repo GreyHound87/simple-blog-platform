@@ -1,142 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { List, Avatar, Tag } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
 
 import './article-list.scss'
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'John Doe',
-    date: '2023-11-27',
-    tags: ['React', 'Ant Design', 'UI'],
-    likes: 3,
-  },
-  {
-    title: 'Ant Design Title 2',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Jane Doe',
-    date: '2023-11-28',
-    tags: ['JavaScript', 'Frontend', 'Design'],
-    likes: 6,
-  },
-  {
-    title: 'Ant Design Title 3',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Bob Smith',
-    date: '2023-11-29',
-    tags: ['CSS', 'Web Development'],
-    likes: 9,
-  },
-  {
-    title: 'Ant Design Title 4',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Alice Johnson',
-    date: '2023-11-30',
-    tags: ['UI/UX', 'Responsive Design'],
-    likes: 12,
-  },
-  {
-    title: 'Ant Design Title 1',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'John Doe',
-    date: '2023-11-27',
-    tags: ['React', 'Ant Design', 'UI'],
-    likes: 3,
-  },
-  {
-    title: 'Ant Design Title 2',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Jane Doe',
-    date: '2023-11-28',
-    tags: ['JavaScript', 'Frontend', 'Design'],
-    likes: 6,
-  },
-  {
-    title: 'Ant Design Title 3',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Bob Smith',
-    date: '2023-11-29',
-    tags: ['CSS', 'Web Development'],
-    likes: 9,
-  },
-  {
-    title: 'Ant Design Title 4',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Alice Johnson',
-    date: '2023-11-30',
-    tags: ['UI/UX', 'Responsive Design'],
-    likes: 12,
-  },
-  {
-    title: 'Ant Design Title 1',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'John Doe',
-    date: '2023-11-27',
-    tags: ['React', 'Ant Design', 'UI'],
-    likes: 3,
-  },
-  {
-    title: 'Ant Design Title 2',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Jane Doe',
-    date: '2023-11-28',
-    tags: ['JavaScript', 'Frontend', 'Design'],
-    likes: 6,
-  },
-  {
-    title: 'Ant Design Title 3',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Bob Smith',
-    date: '2023-11-29',
-    tags: ['CSS', 'Web Development'],
-    likes: 9,
-  },
-  {
-    title: 'Ant Design Title 4',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Alice Johnson',
-    date: '2023-11-30',
-    tags: ['UI/UX', 'Responsive Design'],
-    likes: 12,
-  },
-  {
-    title: 'Ant Design Title 1',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'John Doe',
-    date: '2023-11-27',
-    tags: ['React', 'Ant Design', 'UI'],
-    likes: 3,
-  },
-  {
-    title: 'Ant Design Title 2',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Jane Doe',
-    date: '2023-11-28',
-    tags: ['JavaScript', 'Frontend', 'Design'],
-    likes: 6,
-  },
-  {
-    title: 'Ant Design Title 3',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Bob Smith',
-    date: '2023-11-29',
-    tags: ['CSS', 'Web Development'],
-    likes: 9,
-  },
-  {
-    title: 'Ant Design Title 4',
-    content: 'Ant Design, a design language for background applications, is refined by Ant UED Team',
-    author: 'Alice Johnson',
-    date: '2023-11-30',
-    tags: ['UI/UX', 'Responsive Design'],
-    likes: 12,
-  },
-]
-
 function ArticleList() {
+  const dispatch = useDispatch()
+  const articles = useSelector((state) => state.articles.articles)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchDataFromAPI()
+        dispatch(setArticles(data))
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [dispatch])
   return (
     <List
       itemLayout="vertical"
