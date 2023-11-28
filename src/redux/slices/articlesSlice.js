@@ -9,6 +9,7 @@ const articlesSlice = createSlice({
   initialState,
   reducers: {
     setArticles: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.articles = action.payload
     },
   },
