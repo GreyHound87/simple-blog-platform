@@ -2,6 +2,7 @@ import React from 'react'
 import { Tag } from 'antd'
 
 import uniqueTags from '../../helpers/unique-tags'
+import formatDate from '../../helpers/format-date'
 
 import './article-description.scss'
 
@@ -13,7 +14,7 @@ function ArticleDescription({ tagList, createdAt }) {
           <Tag key={tag}>{tag}</Tag>
         ))}
       </div>
-      <span>{createdAt}</span>
+      <span>{formatDate(createdAt)}</span>
     </div>
   )
 }
