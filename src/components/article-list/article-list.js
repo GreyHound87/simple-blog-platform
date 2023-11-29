@@ -4,31 +4,23 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
+import fetchDataFromAPI from '../../services/api'
 
 import './article-list.scss'
-
-const fetchDataFromAPI = async (offset, limit) => {
-  const url = 'https://blog.kata.academy/api/articles'
-  const params = new URLSearchParams({
-    offset,
-    limit,
-  })
-  const response = await fetch(`${url}?${params}`)
-  const data = await response.json()
-  return data.articles
-}
 
 function ArticleList() {
   const dispatch = useDispatch()
   const articles = useSelector((state) => state.articles.articles)
   const [offset, setOffset] = useState(0)
   const limit = 5
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         const data = await fetchDataFromAPI(offset, limit)
-        dispatch(setArticles(data))
+        dispatch(setArticles(data.articles))
+        setTotal(data.articlesCount)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -44,7 +36,8 @@ function ArticleList() {
       dataSource={articles}
       pagination={{
         defaultPageSize: limit,
-        total: 50,
+        total,
+        showSizeChanger: false,
         onChange: (page) => setOffset((page - 1) * limit),
       }}
       renderItem={(item) => (
