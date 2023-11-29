@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
+import ResIcon from '../res-icon/res-icon'
 import fetchDataFromAPI from '../../services/api'
 import generateUniqueKey from '../../helpers/generate-unique-key'
 import uniqueTags from '../../helpers/unique-tags'
@@ -49,7 +50,7 @@ function ArticleList() {
       renderItem={(item) => (
         <List.Item
           key={item.id}
-          extra={<Avatar src={item.author.image} fallback="../../assets/avatar.jpg" size={46} alt="Author Avatar" />}
+          extra={<Avatar src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />}
         >
           <List.Item.Meta
             title={
