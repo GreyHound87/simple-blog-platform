@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
 import fetchDataFromAPI from '../../services/api'
+import generateUniqueKey from '../../helpers/generate-unique-key'
 
 import './article-list.scss'
 
@@ -19,7 +20,11 @@ function ArticleList() {
     const fetchArticles = async () => {
       try {
         const data = await fetchDataFromAPI(offset, limit)
-        dispatch(setArticles(data.articles))
+        const articlesWithId = data.articles.map((article) => ({
+          ...article,
+          id: generateUniqueKey(),
+        }))
+        dispatch(setArticles(articlesWithId))
         setTotal(data.articlesCount)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -41,7 +46,7 @@ function ArticleList() {
         onChange: (page) => setOffset((page - 1) * limit),
       }}
       renderItem={(item) => (
-        <List.Item key={item.slug} extra={<Avatar src={item.author.image} size={46} />}>
+        <List.Item key={item.id} extra={<Avatar src={item.author.image} size={46} />}>
           <List.Item.Meta
             title={
               <div className="title-wrapper">
