@@ -47,7 +47,10 @@ function ArticleList() {
         onChange: (page) => setOffset((page - 1) * limit),
       }}
       renderItem={(item) => (
-        <List.Item key={item.id} extra={<Avatar src={item.author.image} size={46} />}>
+        <List.Item
+          key={item.id}
+          extra={<Avatar src={item.author.image} fallback="../../assets/avatar.jpg" size={46} alt="Author Avatar" />}
+        >
           <List.Item.Meta
             title={
               <div className="title-wrapper">
