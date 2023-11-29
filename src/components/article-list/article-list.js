@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { List, Avatar, Tag } from 'antd'
+import { List, Avatar } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setArticles } from '../../redux/slices/articlesSlice'
-import ArticleRate from '../article-rate/article-rate'
+import ArticleTitle from '../article-title/article-title'
+import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 import fetchDataFromAPI from '../../services/api'
 import generateUniqueKey from '../../helpers/generate-unique-key'
-import uniqueTags from '../../helpers/unique-tags'
 
 import './article-list.scss'
 
@@ -54,27 +54,15 @@ function ArticleList() {
         >
           <List.Item.Meta
             title={
-              <div className="title-wrapper">
-                <div>
-                  <a href="#">{item.title}</a>
-                  <ArticleRate />
-                  <span>{item.favoritesCount}</span>
-                </div>
-                <span>{item.author.username}</span>
-              </div>
+              <ArticleTitle
+                title={item.title}
+                favoritesCount={item.favoritesCount}
+                authorUsername={item.author.username}
+              />
             }
-            description={
-              <div className="description-wrapper">
-                <div className="tags-container">
-                  {uniqueTags(item.tagList).map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
-                <span>{item.createdAt}</span>
-              </div>
-            }
+            description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
-          {item.body}
+          {item.slug}
         </List.Item>
       )}
     />
