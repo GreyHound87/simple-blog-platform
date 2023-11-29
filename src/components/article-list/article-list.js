@@ -6,6 +6,7 @@ import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
 import fetchDataFromAPI from '../../services/api'
 import generateUniqueKey from '../../helpers/generate-unique-key'
+import uniqueTags from '../../helpers/unique-tags'
 
 import './article-list.scss'
 
@@ -61,7 +62,7 @@ function ArticleList() {
             description={
               <div className="description-wrapper">
                 <div className="tags-container">
-                  {item.tagList.map((tag) => (
+                  {uniqueTags(item.tagList).map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
                   ))}
                 </div>
