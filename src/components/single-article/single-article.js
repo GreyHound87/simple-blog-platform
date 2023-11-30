@@ -1,13 +1,12 @@
 import React from 'react'
-/* import { useParams } from 'react-router-dom' */
-/* import { useSelector } from 'react-redux' */
-import { Typography, Avatar } from 'antd'
+import { Avatar, Card } from 'antd'
+import ReactMarkdown from 'react-markdown'
 
 import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 
-const { Paragraph } = Typography
+const { Meta } = Card
 
 const article = {
   slug: 'posle-pravok-5thvca',
@@ -27,25 +26,23 @@ const article = {
 }
 
 function SingleArticle() {
-  /* const { slug } = useParams() */
-  /* const articles = useSelector((state) => state.articles.articles) */
-  /* const article = articles.find((a) => a.slug === slug) */
-
-  /* if (!article) {
-    return <div>Статья не найдена</div>
-  } */
-
   return (
-    <Typography>
-      <ArticleTitle
-        title={article.title}
-        favoritesCount={article.favoritesCount}
-        authorUsername={article.author.username}
+    <Card
+      style={{ width: '100%' }}
+      extra={<Avatar src={article.author.image} icon={<ResIcon />} alt="Author Avatar" />}
+    >
+      <Meta
+        description={<ArticleDescription tagList={article.tagList} createdAt={article.createdAt} />}
+        title={
+          <ArticleTitle
+            title={article.title}
+            favoritesCount={article.favoritesCount}
+            authorUsername={article.author.username}
+          />
+        }
       />
-      <ArticleDescription tagList={article.tagList} createdAt={article.createdAt} />
-      <Avatar src={article.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
-      <Paragraph>{article.body}</Paragraph>
-    </Typography>
+      <ReactMarkdown>{article.body}</ReactMarkdown>
+    </Card>
   )
 }
 
