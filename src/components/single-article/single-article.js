@@ -28,19 +28,19 @@ const article = {
 function SingleArticle() {
   return (
     <Card
-      style={{ width: '100%' }}
-      extra={<Avatar src={article.author.image} icon={<ResIcon />} alt="Author Avatar" />}
-    >
-      <Meta
-        description={<ArticleDescription tagList={article.tagList} createdAt={article.createdAt} />}
-        title={
+      title={
+        <>
           <ArticleTitle
             title={article.title}
             favoritesCount={article.favoritesCount}
             authorUsername={article.author.username}
           />
-        }
-      />
+          <ArticleDescription tagList={article.tagList} createdAt={article.createdAt} />
+        </>
+      }
+      extra={<Avatar src={article.author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />}
+    >
+      <Meta description={article.description} />
       <ReactMarkdown>{article.body}</ReactMarkdown>
     </Card>
   )
