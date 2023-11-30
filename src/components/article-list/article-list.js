@@ -62,7 +62,7 @@ function ArticleList() {
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
-          {item.slug}
+          {item.description}
         </List.Item>
       )}
     />
