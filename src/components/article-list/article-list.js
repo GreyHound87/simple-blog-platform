@@ -58,6 +58,7 @@ function ArticleList() {
                 title={item.title}
                 favoritesCount={item.favoritesCount}
                 authorUsername={item.author.username}
+                article={item}
               />
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}

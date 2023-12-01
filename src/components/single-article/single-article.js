@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Card } from 'antd'
+import { useSelector } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
 
 import ArticleTitle from '../article-title/article-title'
@@ -8,8 +9,14 @@ import ResIcon from '../res-icon/res-icon'
 
 const { Meta } = Card
 
-function SingleArticle(article) {
-  const { title, favoritesCount, tagList, createdAt, description, body, author } = { article }
+function SingleArticle() {
+  const selectedArticle = useSelector((state) => state.articles.selectedArticle)
+
+  if (!selectedArticle) {
+    return null
+  }
+
+  const { title, favoritesCount, tagList, createdAt, description, body, author } = selectedArticle
   return (
     <Card
       title={
