@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { setSelectedArticle } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
 
 import './article-title.scss'
 
-function ArticleTitle({ title, favoritesCount, authorUsername, article }) {
+function ArticleTitle({ title, favoritesCount, authorUsername, article, slug }) {
   const dispatch = useDispatch()
 
   const handleTitleClick = () => {
@@ -16,9 +17,9 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article }) {
   return (
     <div className="title-wrapper">
       <div>
-        <a href="#" onClick={handleTitleClick}>
+        <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
           {title}
-        </a>
+        </Link>
         <ArticleRate />
         <span>{favoritesCount}</span>
       </div>
