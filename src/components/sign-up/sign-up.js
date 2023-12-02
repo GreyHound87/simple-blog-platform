@@ -1,10 +1,23 @@
 import React from 'react'
 import { Form, Input, Button, Space, Checkbox } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { registerUserAsync } from '../../redux/slices/authSlice'
+import api from '../../services/api'
+
 function Signup() {
-  const onFinish = (values) => {
-    console.log('Signing up with:', values)
+  const dispatch = useDispatch()
+  const loading = useSelector((state) => state.auth.loading)
+  const error = useSelector((state) => state.auth.error)
+
+  const onFinish = async (values) => {
+    try {
+      const response = await api.registerUser(values)
+      dispatch(registerUserAsync(response))
+    } catch {
+      console.error('Error registering user:', error)
+    }
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -14,6 +27,7 @@ function Signup() {
   return (
     <div>
       <h2>Create new account</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Form name="signupForm" onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Username' }]}>
           <Input />

@@ -6,7 +6,7 @@ import { setArticles } from '../../redux/slices/articlesSlice'
 import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
-import fetchDataFromAPI from '../../services/api'
+import api from '../../services/api'
 import generateUniqueKey from '../../helpers/generate-unique-key'
 
 import './article-list.scss'
@@ -21,7 +21,7 @@ function ArticleList() {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const data = await fetchDataFromAPI(offset, limit)
+        const data = await api.fetchData(offset, limit)
         const articlesWithId = data.articles.map((article) => ({
           ...article,
           id: generateUniqueKey(),
