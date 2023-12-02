@@ -5,12 +5,14 @@ import Header from '../header/header'
 import ArticleList from '../article-list/article-list'
 import SingleArticle from '../single-article/single-article'
 import Login from '../login/login'
+import Signup from '../sign-up/sign-up'
 
 function App() {
   return (
     <Router>
       <Header />
       <Login />
+      <Signup />
       <main>
         <Switch>
           <Route path="/articles/:slug" component={SingleArticle} />
