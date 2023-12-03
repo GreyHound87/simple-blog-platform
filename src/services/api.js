@@ -23,6 +23,18 @@ const api = {
     const data = await response.json()
     return data
   },
+  loginUser: async (credentials) => {
+    const url = `${API_BASE_URL}/users/login`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: credentials }),
+    })
+    const data = await response.json()
+    return data
+  },
 }
 
 export default api

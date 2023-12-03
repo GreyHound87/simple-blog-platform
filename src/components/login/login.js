@@ -1,10 +1,22 @@
 import React from 'react'
 import { Form, Input, Button, Space } from 'antd'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { loginUserAsync } from '../../redux/slices/authSlice'
 
 function Login() {
-  const onFinish = (values) => {
-    console.log('Logging in with:', values)
+  const dispatch = useDispatch()
+  const loading = useSelector((state) => state.auth.loading)
+  const error = useSelector((state) => state.auth.error)
+
+  const onFinish = async (values) => {
+    try {
+      const response = await dispatch(loginUserAsync(values))
+      console.log('Login successful:', response)
+    } catch (err) {
+      console.error('Error logging in:', err)
+    }
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -14,6 +26,7 @@ function Login() {
   return (
     <div>
       <h2>Sign In</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Form name="loginForm" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Form.Item label="Email address" name="email" rules={[{ required: true, message: 'Email address' }]}>
           <Input />
