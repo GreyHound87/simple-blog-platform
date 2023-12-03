@@ -9,7 +9,8 @@ export const registerUserAsync = createAsyncThunk('auth/registerUser', async (us
 
 export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credentials) => {
   const response = await api.loginUser(credentials)
-  return response.data
+  console.log('Login response:', response)
+  return response
 })
 
 const authSlice = createSlice({
@@ -50,7 +51,7 @@ const authSlice = createSlice({
         // eslint-disable-next-line no-param-reassign
         state.loading = false
         // eslint-disable-next-line no-param-reassign
-        state.user = action.payload.user
+        state.user = action.payload
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
