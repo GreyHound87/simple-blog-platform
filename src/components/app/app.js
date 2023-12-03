@@ -11,10 +11,10 @@ function App() {
   return (
     <Router>
       <Header />
-      <Login />
-      <Signup />
       <main>
         <Switch>
+          <Route path="/sign-up" component={Signup} />
+          <Route path="/sign-in" component={Login} />
           <Route path="/articles/:slug" component={SingleArticle} />
           <Route path="/articles" component={ArticleList} />
           <Route path="/" component={ArticleList} />

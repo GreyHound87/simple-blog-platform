@@ -86,7 +86,7 @@ function Signup() {
 
       <Space>
         Already have an account?
-        <Link to="/login">Log In</Link>
+        <Link to="/sign-in">Log In</Link>
       </Space>
     </div>
   )

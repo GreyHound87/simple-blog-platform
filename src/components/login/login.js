@@ -45,7 +45,7 @@ function Login() {
 
       <Space>
         Don’t have an account?
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/sign-up">Sign Up</Link>
       </Space>
     </div>
   )
