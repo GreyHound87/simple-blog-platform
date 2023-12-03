@@ -4,7 +4,7 @@ import api from '../../services/api'
 
 export const registerUserAsync = createAsyncThunk('auth/registerUser', async (userData) => {
   const response = await api.registerUser(userData)
-  return response.data
+  return response
 })
 
 export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credentials) => {

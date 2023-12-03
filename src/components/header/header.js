@@ -13,22 +13,36 @@ function Header() {
       ghost={false}
       title={<Link to="/">Realworld Blog</Link>}
       extra={
-        !user ? (
-          [
-            <Link to="/sign-in" key="in">
-              <Button type="text" className="header_btn--sign-in">
-                Sign In
+        user
+          ? [
+              <Link to="/new-article" key="create">
+                <Button type="text" className="header_btn--create">
+                  Create article
+                </Button>
+              </Link>,
+              <Link to="/profile" key="profile">
+              <Button type="text" className="header_btn--profile">
+                {user.username}
               </Button>
-            </Link>,
-            <Link to="/sign-up" key="up">
-              <Button type="text" className="header_btn--sign-up">
-                Sign Up
-              </Button>
-            </Link>,
-          ]
-        ) : (
-          <p>Welcome</p>
-        )
+              </Link>,
+              <Link to="/" key="out">
+                <Button type="text" className="header_btn--log-out">
+                  Log Out
+                </Button>
+              </Link>,
+            ]
+          : [
+              <Link to="/sign-in" key="in">
+                <Button type="text" className="header_btn--sign-in">
+                  Sign In
+                </Button>
+              </Link>,
+              <Link to="/sign-up" key="up">
+                <Button type="text" className="header_btn--sign-up">
+                  Sign Up
+                </Button>
+              </Link>,
+            ]
       }
     />
   )
