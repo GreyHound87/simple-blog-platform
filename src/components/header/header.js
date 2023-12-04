@@ -1,15 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Button, Avatar } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
 import { Link } from 'react-router-dom'
 
+import { logoutUser } from '../../redux/slices/authSlice'
 import ResIcon from '../res-icon/res-icon'
 import './header.scss'
 
 function Header() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user)
   let extraContent
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken')
+    dispatch(logoutUser())
+  }
 
   if (user) {
     console.log(user)
@@ -27,7 +34,7 @@ function Header() {
           </Button>
         </Link>
         <Link to="/">
-          <Button type="text" className="header_btn--log-out">
+          <Button type="text" className="header_btn--log-out" onClick={handleLogout}>
             Log Out
           </Button>
         </Link>

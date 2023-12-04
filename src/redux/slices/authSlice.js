@@ -15,7 +15,12 @@ const authSlice = createSlice({
     error: null,
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      // eslint-disable-next-line no-param-reassign
+      state.user = null
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUserAsync.pending, (state) => {
@@ -76,5 +81,7 @@ const authSlice = createSlice({
       })
   },
 })
+
+export const { logoutUser } = authSlice.actions
 
 export default authSlice.reducer
