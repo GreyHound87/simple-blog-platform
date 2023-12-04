@@ -4,11 +4,9 @@ import api from '../../services/api'
 
 export const registerUserAsync = createAsyncThunk('auth/registerUser', async (userData) => api.registerUser(userData))
 
-export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credentials) => {
-  const response = await api.loginUser(credentials)
-  console.log('Login response:', response)
-  return response
-})
+export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credentials) => api.loginUser(credentials))
+
+export const reLoginUserAsync = createAsyncThunk('auth/reLoginUser', async (authToken) => api.reLoginUser(authToken))
 
 const authSlice = createSlice({
   name: 'auth',
@@ -52,6 +50,25 @@ const authSlice = createSlice({
         state.user = action.payload.user
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = false
+        // eslint-disable-next-line no-param-reassign
+        state.error = action.error.message
+      })
+      .addCase(reLoginUserAsync.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = true
+        // eslint-disable-next-line no-param-reassign
+        state.error = null
+      })
+      .addCase(reLoginUserAsync.fulfilled, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = false
+        // eslint-disable-next-line no-param-reassign
+        state.user = action.payload
+        console.log(state.user)
+      })
+      .addCase(reLoginUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
         // eslint-disable-next-line no-param-reassign

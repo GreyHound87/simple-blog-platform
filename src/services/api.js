@@ -22,7 +22,7 @@ const api = {
     })
     const data = await response.json()
     console.log(data)
-    localStorage.setItem('authToken', data.token)
+    localStorage.setItem('authToken', data.user.token)
     return data
   },
   loginUser: async (credentials) => {
@@ -36,8 +36,29 @@ const api = {
     })
     const data = await response.json()
     console.log(data)
-    localStorage.setItem('authToken', data.token)
+    localStorage.setItem('authToken', data.user.token)
     return data
+  },
+  reLoginUser: async () => {
+    const url = `${API_BASE_URL}/user`
+    const token = localStorage.getItem('authToken')
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.errors.body[0] || 'Unexpected error')
+    }
+
+    const data = await response.json()
+    console.log(data)
+    return data.user
   },
 }
 
