@@ -16,11 +16,12 @@ const api = {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({ user: userData }),
     })
     const data = await response.json()
+    console.log(data)
     return data
   },
   loginUser: async (credentials) => {
@@ -28,11 +29,12 @@ const api = {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({ user: credentials }),
     })
     const data = await response.json()
+    console.log(data)
     return data
   },
 }

@@ -1,39 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Input, Button, Space, Checkbox, message } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { registerUserAsync } from '../../redux/slices/authSlice'
-import api from '../../services/api'
 
 function Signup() {
   const dispatch = useDispatch()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const history = useHistory()
+  const loading = useSelector((state) => state.auth.loading)
+  const error = useSelector((state) => state.auth.error)
 
   const onFinish = async (values) => {
     try {
-      setLoading(true)
-      const passwordBuffer = Buffer.from(values.password, 'utf-8')
-      const requestData = {
-        user: {
-          email: values.email,
-          username: values.username,
-          bio: null,
-          image: null,
-          password: passwordBuffer,
-        },
-      }
-      const requestDataString = JSON.stringify(requestData)
-
-      const response = await api.registerUser(requestDataString)
-      dispatch(registerUserAsync(response))
-      message.success('Account created successfully')
+      await dispatch(registerUserAsync(values))
+      message.success('Register successful')
+      history.push('/')
     } catch (err) {
-      setError(err.message || 'Error registering user')
-      console.error('Error registering user:', err)
-    } finally {
-      setLoading(false)
+      console.error('Error register:', err)
+      message.error('Register failed. Please check your credentials.')
     }
   }
 

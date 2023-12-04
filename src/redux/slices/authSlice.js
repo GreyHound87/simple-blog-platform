@@ -2,10 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import api from '../../services/api'
 
-export const registerUserAsync = createAsyncThunk('auth/registerUser', async (userData) => {
-  const response = await api.registerUser(userData)
-  return response
-})
+export const registerUserAsync = createAsyncThunk('auth/registerUser', async (userData) => api.registerUser(userData))
 
 export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credentials) => {
   const response = await api.loginUser(credentials)
@@ -52,7 +49,7 @@ const authSlice = createSlice({
         // eslint-disable-next-line no-param-reassign
         state.loading = false
         // eslint-disable-next-line no-param-reassign
-        state.user = action.payload
+        state.user = action.payload.user
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign

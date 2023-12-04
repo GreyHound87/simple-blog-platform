@@ -22,8 +22,8 @@ function Header() {
         </Link>
         <Link to="/profile">
           <Button type="text" className="header_btn--profile">
-            {user.user.username}
-            <Avatar src={user.user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
+            {user.username}
+            <Avatar src={user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
           </Button>
         </Link>
         <Link to="/">
