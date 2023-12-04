@@ -7,6 +7,7 @@ import ArticleList from '../article-list/article-list'
 import SingleArticle from '../single-article/single-article'
 import Login from '../login/login'
 import Signup from '../sign-up/sign-up'
+import EditProfile from '../edit-profile/edit-profile'
 import { reLoginUserAsync } from '../../redux/slices/authSlice'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route path="/sign-up" component={Signup} />
           <Route path="/sign-in" component={Login} />
+          <Route path="/profile" component={EditProfile} />
           <Route path="/articles/:slug" component={SingleArticle} />
           <Route path="/articles" component={ArticleList} />
           <Route path="/" component={ArticleList} />

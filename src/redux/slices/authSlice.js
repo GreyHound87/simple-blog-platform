@@ -8,6 +8,8 @@ export const loginUserAsync = createAsyncThunk('auth/loginUser', async (credenti
 
 export const reLoginUserAsync = createAsyncThunk('auth/reLoginUser', async (authToken) => api.reLoginUser(authToken))
 
+export const updateUserAsync = createAsyncThunk('auth/updateUser', async (userDetails) => api.updateUser(userDetails))
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -74,6 +76,24 @@ const authSlice = createSlice({
         console.log(state.user)
       })
       .addCase(reLoginUserAsync.rejected, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = false
+        // eslint-disable-next-line no-param-reassign
+        state.error = action.error.message
+      })
+      .addCase(updateUserAsync.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = true
+        // eslint-disable-next-line no-param-reassign
+        state.error = null
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        // eslint-disable-next-line no-param-reassign
+        state.loading = false
+        // eslint-disable-next-line no-param-reassign
+        state.user = action.payload
+      })
+      .addCase(updateUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
         // eslint-disable-next-line no-param-reassign
