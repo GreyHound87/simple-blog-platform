@@ -15,18 +15,18 @@ function Header() {
     console.log(user)
     extraContent = (
       <>
-        <Link to="/new-article" key="create">
+        <Link to="/new-article">
           <Button type="text" className="header_btn--create">
             Create article
           </Button>
         </Link>
-        <Link to="/profile" key="profile">
+        <Link to="/profile">
           <Button type="text" className="header_btn--profile">
             {user.user.username}
             <Avatar src={user.user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
           </Button>
         </Link>
-        <Link to="/" key="out">
+        <Link to="/">
           <Button type="text" className="header_btn--log-out">
             Log Out
           </Button>
@@ -36,12 +36,12 @@ function Header() {
   } else {
     extraContent = (
       <>
-        <Link to="/sign-in" key="in">
+        <Link to="/sign-in">
           <Button type="text" className="header_btn--sign-in">
             Sign In
           </Button>
         </Link>
-        <Link to="/sign-up" key="up">
+        <Link to="/sign-up">
           <Button type="text" className="header_btn--sign-up">
             Sign Up
           </Button>

@@ -1,22 +1,39 @@
-import React from 'react'
-import { Form, Input, Button, Space, Checkbox } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { Form, Input, Button, Space, Checkbox, message } from 'antd'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { registerUserAsync } from '../../redux/slices/authSlice'
 import api from '../../services/api'
 
 function Signup() {
   const dispatch = useDispatch()
-  const loading = useSelector((state) => state.auth.loading)
-  const error = useSelector((state) => state.auth.error)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const onFinish = async (values) => {
     try {
-      const response = await api.registerUser(values)
+      setLoading(true)
+      const passwordBuffer = Buffer.from(values.password, 'utf-8')
+      const requestData = {
+        user: {
+          email: values.email,
+          username: values.username,
+          bio: null,
+          image: null,
+          password: passwordBuffer,
+        },
+      }
+      const requestDataString = JSON.stringify(requestData)
+
+      const response = await api.registerUser(requestDataString)
       dispatch(registerUserAsync(response))
-    } catch {
-      console.error('Error registering user:', error)
+      message.success('Account created successfully')
+    } catch (err) {
+      setError(err.message || 'Error registering user')
+      console.error('Error registering user:', err)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -78,7 +95,7 @@ function Signup() {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Create
           </Button>
         </Form.Item>
