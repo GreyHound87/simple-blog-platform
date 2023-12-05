@@ -100,6 +100,20 @@ const api = {
     const data = await response.json()
     return data
   },
+  updateArticle: async (slug, articleData) => {
+    const url = `${API_BASE_URL}/articles/${slug}`
+    const token = localStorage.getItem('authToken')
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ article: articleData }),
+    })
+    const data = await response.json()
+    return data
+  },
 }
 
 export default api
