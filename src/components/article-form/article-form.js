@@ -45,20 +45,22 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item label="Tags" name="tags">
-        <Space>
-          {tags.map((tag) => (
-            <Tag key={tag} closable onClose={() => handleTagDelete(tag)}>
-              {tag}
-            </Tag>
-          ))}
-        </Space>
-        <Input
-          placeholder="New Tag"
-          value={tagInput}
-          onChange={(e) => setTagInput(e.target.value)}
-          onPressEnter={handleTagAdd}
-          onBlur={handleTagAdd}
-        />
+        <div>
+          <Space>
+            {tags.map((tag) => (
+              <Tag key={tag} closable onClose={() => handleTagDelete(tag)}>
+                {tag}
+              </Tag>
+            ))}
+          </Space>
+          <Input
+            placeholder="New Tag"
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
+            onPressEnter={handleTagAdd}
+            onBlur={handleTagAdd}
+          />
+        </div>
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 4, span: 16 }}>

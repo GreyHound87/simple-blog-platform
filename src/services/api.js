@@ -85,6 +85,21 @@ const api = {
       throw new Error(error.message || 'Failed to update user')
     }
   },
+  createArticle: async (articleData) => {
+    const url = `${API_BASE_URL}/articles`
+    const token = localStorage.getItem('authToken')
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ article: articleData }),
+    })
+    const data = await response.json()
+    return data
+  },
 }
 
 export default api
