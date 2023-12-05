@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
+import ArticleMeta from '../article-meta/article-meta'
 
 const { Meta } = Card
 
@@ -16,7 +17,7 @@ function SingleArticle() {
     return null
   }
 
-  const { title, favoritesCount, tagList, createdAt, description, body, author } = selectedArticle
+  const { title, favoritesCount, tagList, createdAt, description, body, author, slug } = selectedArticle
   return (
     <Card
       title={
@@ -27,7 +28,7 @@ function SingleArticle() {
       }
       extra={<Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />}
     >
-      <Meta description={description} />
+      <Meta description={<ArticleMeta description={description} slug={slug} />} />
       <ReactMarkdown>{body}</ReactMarkdown>
     </Card>
   )

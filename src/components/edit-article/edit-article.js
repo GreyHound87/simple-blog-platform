@@ -8,9 +8,10 @@ import api from '../../services/api'
 function EditArticle() {
   const initialValues = useSelector((state) => state.articles.selectedArticle)
 
-  const handleSubmit = async (slug, articleData) => {
+  const handleSubmit = async (articleData) => {
+    console.log(initialValues.slug)
     try {
-      const response = await api.updateArticle(slug, articleData)
+      const response = await api.updateArticle(initialValues.slug, articleData)
 
       if (response.errors) {
         message.error('Failed to edit article')
