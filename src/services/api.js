@@ -114,6 +114,19 @@ const api = {
     const data = await response.json()
     return data
   },
+  deleteArticle: async (slug) => {
+    const url = `${API_BASE_URL}/articles/${slug}`
+    const token = localStorage.getItem('authToken')
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+    })
+    const data = await response.json()
+    return data
+  },
 }
 
 export default api

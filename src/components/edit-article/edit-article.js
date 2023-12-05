@@ -9,7 +9,6 @@ function EditArticle() {
   const initialValues = useSelector((state) => state.articles.selectedArticle)
 
   const handleSubmit = async (articleData) => {
-    console.log(initialValues.slug)
     try {
       const response = await api.updateArticle(initialValues.slug, articleData)
 

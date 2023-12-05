@@ -1,18 +1,41 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, Popconfirm, message } from 'antd'
 import { Link } from 'react-router-dom'
 
+import api from '../../services/api'
+
 function ArticleMeta({ description, slug }) {
-  const onDelete = () => {}
+  const handleDeleteConfirm = async () => {
+    try {
+      const response = await api.deleteArticle(slug)
+
+      if (response.errors) {
+        message.error('Failed to delete article')
+      } else {
+        message.success('Article deleted successfully')
+      }
+    } catch (error) {
+      console.error('Error deleting article:', error)
+      message.error('Failed to delete article')
+    }
+  }
 
   return (
     <div>
       {description}
-      <Button type="text" className="article_btn--del" onClick={onDelete}>
-        Delete
-      </Button>
+      <Popconfirm
+        title="Are you sure you want to delete this article?"
+        onConfirm={handleDeleteConfirm}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Button type="text" className="article_btn--del">
+          Delete
+        </Button>
+      </Popconfirm>
+
       <Link to={`/articles/${slug}/edit`}>
-        <Button type="link" className="article_btn--edit">
+        <Button type="text" className="article_btn--edit">
           Edit
         </Button>
       </Link>
