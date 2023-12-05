@@ -91,7 +91,7 @@ const authSlice = createSlice({
         // eslint-disable-next-line no-param-reassign
         state.loading = false
         // eslint-disable-next-line no-param-reassign
-        state.user = action.payload
+        state.user = action.payload.user
       })
       .addCase(updateUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign

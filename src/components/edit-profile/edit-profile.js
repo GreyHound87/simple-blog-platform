@@ -77,7 +77,7 @@ function EditProfile() {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item label="Avatar image (url)" name="avatar">
+        <Form.Item label="Avatar image (url)" name="image">
           <Input />
         </Form.Item>
 

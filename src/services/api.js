@@ -62,7 +62,7 @@ const api = {
   },
   updateUser: async (userDetails) => {
     const url = `${API_BASE_URL}/user`
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('authToken')
 
     try {
       const response = await fetch(url, {
