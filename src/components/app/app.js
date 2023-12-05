@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import Header from '../header/header'
 import ArticleList from '../article-list/article-list'
 import SingleArticle from '../single-article/single-article'
+import ArticleForm from '../article-form/article-form'
 import Login from '../login/login'
 import Signup from '../sign-up/sign-up'
 import EditProfile from '../edit-profile/edit-profile'
@@ -28,6 +29,7 @@ function App() {
           <Route path="/sign-in" component={Login} />
           <Route path="/profile" component={EditProfile} />
           <Route path="/articles/:slug" component={SingleArticle} />
+          <Route path="/new-article" component={ArticleForm} />
           <Route path="/articles" component={ArticleList} />
           <Route path="/" component={ArticleList} />
         </Switch>
