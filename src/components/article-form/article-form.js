@@ -34,17 +34,17 @@ function ArticleForm({ onSubmit, initialValues }) {
 
       <Form.Item
         label="Short Description"
-        name="shortDescription"
+        name="description"
         rules={[{ required: true, message: 'Please enter a short description' }]}
       >
         <Input.TextArea />
       </Form.Item>
 
-      <Form.Item label="Text" name="text" rules={[{ required: true, message: 'Please enter the text' }]}>
+      <Form.Item label="Text" name="body" rules={[{ required: true, message: 'Please enter the text' }]}>
         <Input.TextArea />
       </Form.Item>
 
-      <Form.Item label="Tags" name="tags">
+      <Form.Item label="Tags" name="tagList">
         <div>
           <Space>
             {tags.map((tag) => (
