@@ -127,6 +127,20 @@ const api = {
     const data = await response.json()
     return data
   },
+  favoriteArticle: async (slug, favorited) => {
+    const url = `${API_BASE_URL}/articles/${slug}/favorite`
+    const token = localStorage.getItem('authToken')
+    const requestOptions = {
+      method: favorited ? 'DELETE' : 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+    }
+    const response = await fetch(url, requestOptions)
+    const data = await response.json()
+    return data
+  },
 }
 
 export default api

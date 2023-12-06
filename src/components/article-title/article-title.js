@@ -20,7 +20,7 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug }) 
         <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
           {title}
         </Link>
-        <ArticleRate />
+        <ArticleRate slug={slug} />
         <span>{favoritesCount}</span>
       </div>
       <span>{authorUsername}</span>
