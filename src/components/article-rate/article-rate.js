@@ -52,7 +52,7 @@ function ArticleRate({ slug, favorited }) {
 
   const character = ({ value }) => (value === 1 ? <span>{filledSvg}</span> : <span>{defaultSvg}</span>)
 
-  return <Rate defaultValue={favorited} character={character} count={1} onChange={handleFavoriteArticle} />
+  return <Rate defaultValue={favorited ? 1 : 0} character={character} count={1} onChange={handleFavoriteArticle} />
 }
 
 export default ArticleRate

@@ -3,11 +3,21 @@ const API_BASE_URL = 'https://blog.kata.academy/api'
 const api = {
   fetchData: async (offset, limit) => {
     const url = `${API_BASE_URL}/articles`
+    const token = localStorage.getItem('authToken')
     const params = new URLSearchParams({
       offset,
       limit,
     })
-    const response = await fetch(`${url}?${params}`)
+
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token ? `Token ${token}` : '',
+      },
+    }
+
+    const response = await fetch(`${url}?${params}`, requestOptions)
     const data = await response.json()
     return data
   },
