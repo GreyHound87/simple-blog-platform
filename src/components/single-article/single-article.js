@@ -27,6 +27,7 @@ function SingleArticle() {
             favoritesCount={favoritesCount}
             authorUsername={author.username}
             favorited={favorited}
+            slug={slug}
           />
           <ArticleDescription tagList={tagList} createdAt={createdAt} />
         </>
