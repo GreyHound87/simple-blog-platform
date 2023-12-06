@@ -17,12 +17,17 @@ function SingleArticle() {
     return null
   }
 
-  const { title, favoritesCount, tagList, createdAt, description, body, author, slug } = selectedArticle
+  const { title, favoritesCount, tagList, createdAt, description, body, author, slug, favorited } = selectedArticle
   return (
     <Card
       title={
         <>
-          <ArticleTitle title={title} favoritesCount={favoritesCount} authorUsername={author.username} />
+          <ArticleTitle
+            title={title}
+            favoritesCount={favoritesCount}
+            authorUsername={author.username}
+            favorited={favorited}
+          />
           <ArticleDescription tagList={tagList} createdAt={createdAt} />
         </>
       }

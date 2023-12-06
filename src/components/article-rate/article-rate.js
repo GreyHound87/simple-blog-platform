@@ -1,5 +1,7 @@
 import React from 'react'
-import { Rate } from 'antd'
+import { Rate, message } from 'antd'
+
+import api from '../../services/api'
 
 const defaultSvg = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -29,10 +31,28 @@ const filledSvg = (
   </svg>
 )
 
-function ArticleRate() {
+function ArticleRate({ slug, favorited }) {
+  const handleFavoriteArticle = async () => {
+    try {
+      console.log('slug', slug)
+      console.log('favorited', favorited)
+
+      const response = await api.favoriteArticle(slug, favorited)
+
+      if (response.errors) {
+        message.error('Failed to rate article')
+      } else {
+        message.success('Article rated successfully')
+      }
+    } catch (error) {
+      console.error('Error rating article:', error)
+      message.error('Failed to rate article')
+    }
+  }
+
   const character = ({ value }) => (value === 1 ? <span>{filledSvg}</span> : <span>{defaultSvg}</span>)
 
-  return <Rate character={character} count={1} />
+  return <Rate defaultValue={favorited} character={character} count={1} onChange={handleFavoriteArticle} />
 }
 
 export default ArticleRate

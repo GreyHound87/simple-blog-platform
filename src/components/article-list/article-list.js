@@ -60,6 +60,7 @@ function ArticleList() {
                 authorUsername={item.author.username}
                 article={item}
                 slug={item.slug}
+                favorited={item.favorited}
               />
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}

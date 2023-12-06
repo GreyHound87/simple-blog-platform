@@ -7,8 +7,10 @@ import ArticleRate from '../article-rate/article-rate'
 
 import './article-title.scss'
 
-function ArticleTitle({ title, favoritesCount, authorUsername, article, slug }) {
+function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, favorited }) {
   const dispatch = useDispatch()
+  console.log('slug', slug)
+  console.log('favorited', favorited)
 
   const handleTitleClick = () => {
     dispatch(setSelectedArticle(article))
@@ -20,7 +22,7 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug }) 
         <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
           {title}
         </Link>
-        <ArticleRate slug={slug} />
+        <ArticleRate slug={slug} favorited={favorited} />
         <span>{favoritesCount}</span>
       </div>
       <span>{authorUsername}</span>
