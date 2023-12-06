@@ -31,7 +31,7 @@ const filledSvg = (
   </svg>
 )
 
-function ArticleRate({ slug, favorited }) {
+function ArticleRate({ slug, favorited, onLikeUpdate }) {
   const handleFavoriteArticle = async () => {
     try {
       console.log('slug', slug)
@@ -43,6 +43,7 @@ function ArticleRate({ slug, favorited }) {
         message.error('Failed to rate article')
       } else {
         message.success('Article rated successfully')
+        onLikeUpdate()
       }
     } catch (error) {
       console.error('Error rating article:', error)

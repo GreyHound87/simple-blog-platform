@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -9,11 +9,18 @@ import './article-title.scss'
 
 function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, favorited }) {
   const dispatch = useDispatch()
+  const [currentFavoritesCount, setCurrentFavoritesCount] = useState(favoritesCount)
+  const [currentFavorited, setCurrentFavorited] = useState(favorited)
   console.log('slug', slug)
   console.log('favorited', favorited)
 
   const handleTitleClick = () => {
     dispatch(setSelectedArticle(article))
+  }
+
+  const handleLikeUpdate = () => {
+    setCurrentFavoritesCount((prevCount) => (currentFavorited ? prevCount - 1 : prevCount + 1))
+    setCurrentFavorited((prevFavorited) => !prevFavorited)
   }
 
   return (
@@ -22,8 +29,8 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
         <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
           {title}
         </Link>
-        <ArticleRate slug={slug} favorited={favorited} />
-        <span>{favoritesCount}</span>
+        <ArticleRate slug={slug} favorited={favorited} onLikeUpdate={handleLikeUpdate} />
+        <span>{currentFavoritesCount}</span>
       </div>
       <span>{authorUsername}</span>
     </div>
