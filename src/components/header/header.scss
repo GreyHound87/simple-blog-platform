@@ -4,3 +4,13 @@
   border: 1px solid $positive-border-color;
   color: $positive-text-color;
 }
+
+.title-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+}

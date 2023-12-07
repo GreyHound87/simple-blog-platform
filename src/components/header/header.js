@@ -19,7 +19,6 @@ function Header() {
   }
 
   if (user) {
-    console.log(user)
     extraContent = (
       <>
         <Link to="/new-article">
@@ -60,7 +59,11 @@ function Header() {
     <PageHeader
       className="site-page-header"
       ghost={false}
-      title={<Link to="/">Realworld Blog</Link>}
+      title={
+        <Link to="/" className="title-link">
+          Realworld Blog
+        </Link>
+      }
       extra={extraContent}
     />
   )
