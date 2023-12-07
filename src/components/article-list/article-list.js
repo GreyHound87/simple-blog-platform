@@ -7,7 +7,6 @@ import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 import api from '../../services/api'
-import generateUniqueKey from '../../helpers/generate-unique-key'
 
 import './article-list.scss'
 
@@ -22,11 +21,7 @@ function ArticleList() {
     const fetchArticles = async () => {
       try {
         const data = await api.fetchData(offset, limit)
-        const articlesWithId = data.articles.map((article) => ({
-          ...article,
-          id: generateUniqueKey(),
-        }))
-        dispatch(setArticles(articlesWithId))
+        dispatch(setArticles(data.articles))
         setTotal(data.articlesCount)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -49,7 +44,7 @@ function ArticleList() {
       }}
       renderItem={(item) => (
         <List.Item
-          key={item.id}
+          key={item.slug}
           extra={<Avatar src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />}
         >
           <List.Item.Meta
