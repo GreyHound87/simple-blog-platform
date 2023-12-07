@@ -43,13 +43,13 @@ function Header() {
     extraContent = (
       <>
         <Link to="/sign-in">
-          <Button type="text" className="header_btn--sign-in">
-            Sign In
+          <Button type="text" size="large" className="header_btn--sign-in">
+            <span className="btn-txt">Sign In</span>
           </Button>
         </Link>
         <Link to="/sign-up">
-          <Button type="text" className="header_btn--sign-up">
-            Sign Up
+          <Button type="text" size="large" className="header_btn--sign-up">
+            <span className="btn-txt">Sign Up</span>
           </Button>
         </Link>
       </>

@@ -3,6 +3,19 @@
 .header_btn--sign-up {
   border: 1px solid $positive-border-color;
   color: $positive-text-color;
+  width: 109px;
+  min-height: 51px;
+}
+
+.header_btn--sign-in {
+  width: 109px;
+  min-height: 51px;
+  margin-right: 8px;
+}
+
+.btn-txt {
+  font-size: 18px;
+  padding-bottom: 8px;
 }
 
 .title-link {
@@ -10,7 +23,8 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 22px;
   color: rgba(0, 0, 0, 0.85);
   text-decoration: none;
+  vertical-align: top;
 }
