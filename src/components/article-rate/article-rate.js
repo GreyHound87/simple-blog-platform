@@ -32,11 +32,9 @@ const filledSvg = (
 )
 
 function ArticleRate({ slug, favorited, onLikeUpdate }) {
+  const authToken = localStorage.getItem('authToken')
   const handleFavoriteArticle = async () => {
     try {
-      console.log('slug', slug)
-      console.log('favorited', favorited)
-
       const response = await api.favoriteArticle(slug, favorited)
 
       if (response.errors) {
@@ -46,14 +44,21 @@ function ArticleRate({ slug, favorited, onLikeUpdate }) {
         onLikeUpdate()
       }
     } catch (error) {
-      console.error('Error rating article:', error)
       message.error('Failed to rate article')
     }
   }
 
   const character = ({ value }) => (value === 1 ? <span>{filledSvg}</span> : <span>{defaultSvg}</span>)
 
-  return <Rate defaultValue={favorited ? 1 : 0} character={character} count={1} onChange={handleFavoriteArticle} />
+  return (
+    <Rate
+      defaultValue={favorited ? 1 : 0}
+      character={character}
+      count={1}
+      onChange={handleFavoriteArticle}
+      disabled={!authToken}
+    />
+  )
 }
 
 export default ArticleRate
