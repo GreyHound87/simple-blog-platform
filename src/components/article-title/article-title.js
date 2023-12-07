@@ -27,12 +27,12 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
     <div className="title-wrapper">
       <div>
         <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
-          {title}
+          <span className="item-title">{title}</span>
         </Link>
         <ArticleRate slug={slug} favorited={favorited} onLikeUpdate={handleLikeUpdate} />
-        <span>{currentFavoritesCount}</span>
+        <span className="rate-count">{currentFavoritesCount}</span>
       </div>
-      <span>{authorUsername}</span>
+      <span className="author-name">{authorUsername}</span>
     </div>
   )
 }

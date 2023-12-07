@@ -1,4 +1,35 @@
 .title-wrapper {
   display: flex;
   justify-content: space-between;
+  height: 16px;
+  padding-top: 6px;
+  width: 101%;
+}
+
+.item-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  padding: 7px 18px 0 3px;
+}
+
+.rate-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 34px;
+  vertical-align: top;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.author-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  padding: 4px 0 0 0;
 }

@@ -33,8 +33,9 @@ function ArticleList() {
 
   return (
     <List
+      className="list"
       itemLayout="vertical"
-      size="large"
+      size="small"
       dataSource={articles}
       pagination={{
         defaultPageSize: limit,
@@ -45,7 +46,8 @@ function ArticleList() {
       renderItem={(item) => (
         <List.Item
           key={item.slug}
-          extra={<Avatar src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />}
+          extra={<Avatar className="avatar" src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />}
+          className="item"
         >
           <List.Item.Meta
             title={
@@ -60,7 +62,7 @@ function ArticleList() {
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
-          {item.description}
+          <span className="list-item-descr">{item.description}</span>
         </List.Item>
       )}
     />

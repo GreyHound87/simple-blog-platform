@@ -11,10 +11,12 @@ function ArticleDescription({ tagList, createdAt }) {
     <div className="description-wrapper">
       <div className="tags-container">
         {uniqueTags(tagList).map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
+          <Tag className="tag" key={tag}>
+            {tag}
+          </Tag>
         ))}
       </div>
-      <span>{formatDate(createdAt)}</span>
+      <span className="created-date">{formatDate(createdAt)}</span>
     </div>
   )
 }

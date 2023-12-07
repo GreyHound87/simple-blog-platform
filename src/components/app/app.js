@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <main>
+      <main style={{ backgroundColor: '#EBEEF3', minHeight: '90vh', padding: '26px' }}>
         <Switch>
           <Route path="/sign-up" component={Signup} />
           <Route path="/sign-in" component={Login} />

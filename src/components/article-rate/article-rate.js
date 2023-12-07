@@ -1,5 +1,6 @@
 import React from 'react'
 import { Rate, message } from 'antd'
+import './article-rate.scss'
 
 import api from '../../services/api'
 
@@ -52,6 +53,7 @@ function ArticleRate({ slug, favorited, onLikeUpdate }) {
 
   return (
     <Rate
+      className="item-rate"
       defaultValue={favorited ? 1 : 0}
       character={character}
       count={1}
