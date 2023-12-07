@@ -22,19 +22,17 @@ function Header() {
     extraContent = (
       <>
         <Link to="/new-article">
-          <Button type="text" className="header_btn--create">
-            Create article
+          <Button className="header_btn--create">
+            <span className="btn-txt--sm">Create article</span>
           </Button>
         </Link>
-        <Link to="/profile">
-          <Button type="text" className="header_btn--profile">
-            {user.username}
-            <Avatar src={user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
-          </Button>
+        <Link to="/profile" className="edit-profile-link">
+          <span className="username">{user.username}</span>
+          <Avatar src={user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
         </Link>
         <Link to="/">
-          <Button type="text" className="header_btn--log-out" onClick={handleLogout}>
-            Log Out
+          <Button size="large" className="header_btn--log-out" onClick={handleLogout}>
+            <span className="btn-txt">Log Out</span>
           </Button>
         </Link>
       </>
