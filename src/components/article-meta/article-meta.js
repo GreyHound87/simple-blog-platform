@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
 
+import './article-meta.scss'
+
 function ArticleMeta({ description, slug }) {
   const handleDeleteConfirm = async () => {
     try {
@@ -21,24 +23,24 @@ function ArticleMeta({ description, slug }) {
   }
 
   return (
-    <div>
-      {description}
-      <Popconfirm
-        title="Are you sure you want to delete this article?"
-        onConfirm={handleDeleteConfirm}
-        okText="Yes"
-        cancelText="No"
-      >
-        <Button type="text" className="article_btn--del">
-          Delete
-        </Button>
-      </Popconfirm>
+    <div className="meta-container">
+      <span className="article-description--meta">{description}</span>
+      <div className="meta-btn-wrapper">
+        <Popconfirm
+          title="Are you sure you want to delete this article?"
+          onConfirm={handleDeleteConfirm}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button danger className="article_btn--del">
+            Delete
+          </Button>
+        </Popconfirm>
 
-      <Link to={`/articles/${slug}/edit`}>
-        <Button type="text" className="article_btn--edit">
-          Edit
-        </Button>
-      </Link>
+        <Link to={`/articles/${slug}/edit`}>
+          <Button className="article_btn--edit">Edit</Button>
+        </Link>
+      </div>
     </div>
   )
 }

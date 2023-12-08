@@ -47,7 +47,7 @@ function SingleArticle() {
       }
       extra={<Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />}
     >
-      <Meta description={<ArticleMeta description={description} slug={slug} />} />
+      <Meta className="card-meta" description={<ArticleMeta description={description} slug={slug} />} />
       <ReactMarkdown>{body}</ReactMarkdown>
     </Card>
   )
