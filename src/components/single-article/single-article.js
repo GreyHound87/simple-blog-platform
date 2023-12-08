@@ -8,9 +8,12 @@ import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 import ArticleMeta from '../article-meta/article-meta'
 
+import './single-article.scss'
+
 const { Meta } = Card
 
 function SingleArticle() {
+  const inCard = true
   const selectedArticle = useSelector((state) => state.articles.selectedArticle)
 
   if (!selectedArticle) {
@@ -20,6 +23,7 @@ function SingleArticle() {
   const { title, favoritesCount, tagList, createdAt, description, body, author, slug, favorited } = selectedArticle
   return (
     <Card
+      className="article-card"
       title={
         <>
           <ArticleTitle
@@ -28,6 +32,7 @@ function SingleArticle() {
             authorUsername={author.username}
             favorited={favorited}
             slug={slug}
+            inCard={inCard}
           />
           <ArticleDescription tagList={tagList} createdAt={createdAt} />
         </>

@@ -7,7 +7,7 @@ import ArticleRate from '../article-rate/article-rate'
 
 import './article-title.scss'
 
-function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, favorited }) {
+function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, favorited, inCard }) {
   const dispatch = useDispatch()
   const [currentFavoritesCount, setCurrentFavoritesCount] = useState(favoritesCount)
   const [currentFavorited, setCurrentFavorited] = useState(favorited)
@@ -24,15 +24,15 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
   }
 
   return (
-    <div className="title-wrapper">
+    <div className={`title-wrapper ${inCard ? 'title-wrapper--in-card' : ''}`}>
       <div>
         <Link to={`/articles/${slug}`} onClick={handleTitleClick}>
-          <span className="item-title">{title}</span>
+          <span className={`item-title ${inCard ? 'item-title--in-card' : ''}`}>{title}</span>
         </Link>
         <ArticleRate slug={slug} favorited={favorited} onLikeUpdate={handleLikeUpdate} />
-        <span className="rate-count">{currentFavoritesCount}</span>
+        <span className={`rate-count ${inCard ? 'rate-count--in-card' : ''}`}>{currentFavoritesCount}</span>
       </div>
-      <span className="author-name">{authorUsername}</span>
+      <span className={`author-name ${inCard ? 'author-name--in-card' : ''}`}>{authorUsername}</span>
     </div>
   )
 }

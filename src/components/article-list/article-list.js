@@ -38,6 +38,7 @@ function ArticleList() {
       size="small"
       dataSource={articles}
       pagination={{
+        size: 'small',
         defaultPageSize: limit,
         total,
         showSizeChanger: false,

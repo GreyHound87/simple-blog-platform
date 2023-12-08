@@ -4,6 +4,9 @@
   height: 16px;
   padding-top: 6px;
   width: 101%;
+  &--in-card {
+    
+  }
 }
 
 .item-title {
@@ -13,6 +16,10 @@
   font-weight: 400;
   line-height: 28px;
   padding: 7px 18px 0 3px;
+  &--in-card {
+    
+  }
+
 }
 
 .rate-count {
@@ -23,6 +30,9 @@
   line-height: 34px;
   vertical-align: top;
   color: rgba(0, 0, 0, 0.75);
+  &--in-card {
+    
+  }
 }
 
 .author-name {
@@ -32,4 +42,7 @@
   font-weight: 400;
   line-height: 28px;
   padding: 4px 0 0 0;
+  &--in-card {
+    
+  }
 }
