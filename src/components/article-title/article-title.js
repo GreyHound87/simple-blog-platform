@@ -11,8 +11,6 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
   const dispatch = useDispatch()
   const [currentFavoritesCount, setCurrentFavoritesCount] = useState(favoritesCount)
   const [currentFavorited, setCurrentFavorited] = useState(favorited)
-  console.log('slug', slug)
-  console.log('favorited', favorited)
 
   const handleTitleClick = () => {
     dispatch(setSelectedArticle(article))

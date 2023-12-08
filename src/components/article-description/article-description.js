@@ -6,17 +6,17 @@ import formatDate from '../../helpers/format-date'
 
 import './article-description.scss'
 
-function ArticleDescription({ tagList, createdAt }) {
+function ArticleDescription({ tagList, createdAt, inCard }) {
   return (
-    <div className="description-wrapper">
-      <div className="tags-container">
+    <div className={`description-wrapper ${inCard ? 'description-wrapper--in-card' : ''}`}>
+      <div className={`tags-container ${inCard ? 'tags-container--in-card' : ''}`}>
         {uniqueTags(tagList).map((tag) => (
-          <Tag className="tag" key={tag}>
+          <Tag className={`tag ${inCard ? 'tag--in-card' : ''}`} key={tag}>
             {tag}
           </Tag>
         ))}
       </div>
-      <span className="created-date">{formatDate(createdAt)}</span>
+      <span className={`created-date ${inCard ? 'created-date--in-card' : ''}`}>{formatDate(createdAt)}</span>
     </div>
   )
 }

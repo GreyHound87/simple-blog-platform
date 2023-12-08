@@ -14,6 +14,12 @@ const { Meta } = Card
 
 function SingleArticle() {
   const inCard = true
+  const cardBodyStyle = {
+    padding: '16px',
+  }
+  const cardHeadStyle = {
+    padding: '0 16px',
+  }
   const selectedArticle = useSelector((state) => state.articles.selectedArticle)
 
   if (!selectedArticle) {
@@ -24,6 +30,8 @@ function SingleArticle() {
   return (
     <Card
       className="article-card"
+      bodyStyle={cardBodyStyle}
+      headStyle={cardHeadStyle}
       title={
         <>
           <ArticleTitle
@@ -34,7 +42,7 @@ function SingleArticle() {
             slug={slug}
             inCard={inCard}
           />
-          <ArticleDescription tagList={tagList} createdAt={createdAt} />
+          <ArticleDescription tagList={tagList} createdAt={createdAt} inCard={inCard} />
         </>
       }
       extra={<Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />}
