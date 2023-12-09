@@ -16,15 +16,19 @@ function ArticleList() {
   const [offset, setOffset] = useState(0)
   const limit = 5
   const [total, setTotal] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
+        setLoading(true)
         const data = await api.fetchData(offset, limit)
         dispatch(setArticles(data.articles))
         setTotal(data.articlesCount)
       } catch (error) {
         console.error('Error fetching data:', error)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -37,6 +41,7 @@ function ArticleList() {
       itemLayout="vertical"
       size="small"
       dataSource={articles}
+      loading={loading}
       pagination={{
         size: 'small',
         defaultPageSize: limit,
