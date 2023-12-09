@@ -21,6 +21,28 @@ const api = {
     const data = await response.json()
     return data
   },
+  getArticle: async (slug) => {
+    const url = `${API_BASE_URL}/articles/${slug}`
+    const token = localStorage.getItem('authToken')
+
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token ? `Token ${token}` : '',
+      },
+    }
+
+    const response = await fetch(url, requestOptions)
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.errors.body[0] || 'Unexpected error')
+    }
+
+    const data = await response.json()
+    return data.article
+  },
   registerUser: async (userData) => {
     const url = `${API_BASE_URL}/users`
     const response = await fetch(url, {

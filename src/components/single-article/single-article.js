@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Avatar, Card } from 'antd'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
+import { useParams } from 'react-router-dom'
 
 import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 import ArticleMeta from '../article-meta/article-meta'
-
-import './single-article.scss'
+import api from '../../services/api'
+import { setSelectedArticle } from '../../redux/slices/articlesSlice'
 
 const { Meta } = Card
 
 function SingleArticle() {
+  const dispatch = useDispatch()
+  const { slug } = useParams()
   const inCard = true
   const cardBodyStyle = {
     padding: '16px',
@@ -22,11 +25,24 @@ function SingleArticle() {
   }
   const selectedArticle = useSelector((state) => state.articles.selectedArticle)
 
+  useEffect(() => {
+    const getArticleData = async () => {
+      try {
+        const articleData = await api.getArticle(slug)
+        dispatch(setSelectedArticle(articleData))
+      } catch (error) {
+        console.error('Error fetching article data:', error)
+      }
+    }
+
+    getArticleData()
+  }, [dispatch, slug])
+
   if (!selectedArticle) {
     return null
   }
 
-  const { title, favoritesCount, tagList, createdAt, description, body, author, slug, favorited } = selectedArticle
+  const { title, favoritesCount, tagList, createdAt, description, body, author, favorited } = selectedArticle
   return (
     <Card
       className="article-card"
