@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Avatar, Card } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Avatar, Card, message, Spin } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router-dom'
@@ -10,12 +10,14 @@ import ResIcon from '../res-icon/res-icon'
 import ArticleMeta from '../article-meta/article-meta'
 import api from '../../services/api'
 import { setSelectedArticle } from '../../redux/slices/articlesSlice'
+import './single-article.scss'
 
 const { Meta } = Card
 
 function SingleArticle() {
   const dispatch = useDispatch()
   const { slug } = useParams()
+  const [loading, setLoading] = useState(false)
   const inCard = true
   const cardBodyStyle = {
     padding: '16px',
@@ -28,10 +30,13 @@ function SingleArticle() {
   useEffect(() => {
     const getArticleData = async () => {
       try {
+        setLoading(true)
         const articleData = await api.getArticle(slug)
         dispatch(setSelectedArticle(articleData))
       } catch (error) {
-        console.error('Error fetching article data:', error)
+        message.error('Error fetching article data:', error)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -48,20 +53,27 @@ function SingleArticle() {
       className="article-card"
       bodyStyle={cardBodyStyle}
       headStyle={cardHeadStyle}
+      loading={loading}
       title={
-        <>
-          <ArticleTitle
-            title={title}
-            favoritesCount={favoritesCount}
-            authorUsername={author.username}
-            favorited={favorited}
-            slug={slug}
-            inCard={inCard}
-          />
-          <ArticleDescription tagList={tagList} createdAt={createdAt} inCard={inCard} />
-        </>
+        <Spin spinning={loading} size="large">
+          <>
+            <ArticleTitle
+              title={title}
+              favoritesCount={favoritesCount}
+              authorUsername={author.username}
+              favorited={favorited}
+              slug={slug}
+              inCard={inCard}
+            />
+            <ArticleDescription tagList={tagList} createdAt={createdAt} inCard={inCard} />
+          </>
+        </Spin>
       }
-      extra={<Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />}
+      extra={
+        <Spin spinning={loading} size="large">
+          <Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />
+        </Spin>
+      }
     >
       <Meta
         className="card-meta"

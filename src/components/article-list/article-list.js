@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { List, Avatar } from 'antd'
+import { List, Avatar, Spin, message } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setArticles } from '../../redux/slices/articlesSlice'
@@ -26,7 +26,7 @@ function ArticleList() {
         dispatch(setArticles(data.articles))
         setTotal(data.articlesCount)
       } catch (error) {
-        console.error('Error fetching data:', error)
+        message.error('Error fetching data:', error)
       } finally {
         setLoading(false)
       }
@@ -41,7 +41,6 @@ function ArticleList() {
       itemLayout="vertical"
       size="small"
       dataSource={articles}
-      loading={loading}
       pagination={{
         size: 'small',
         defaultPageSize: limit,
@@ -52,23 +51,31 @@ function ArticleList() {
       renderItem={(item) => (
         <List.Item
           key={item.slug}
-          extra={<Avatar className="avatar" src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />}
+          extra={
+            <Spin spinning={loading} size="large">
+              <Avatar className="avatar" src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
+            </Spin>
+          }
           className="item"
         >
           <List.Item.Meta
             title={
-              <ArticleTitle
-                title={item.title}
-                favoritesCount={item.favoritesCount}
-                authorUsername={item.author.username}
-                article={item}
-                slug={item.slug}
-                favorited={item.favorited}
-              />
+              <Spin spinning={loading}>
+                <ArticleTitle
+                  title={item.title}
+                  favoritesCount={item.favoritesCount}
+                  authorUsername={item.author.username}
+                  article={item}
+                  slug={item.slug}
+                  favorited={item.favorited}
+                />
+              </Spin>
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
-          <span className="list-item-descr">{item.description}</span>
+          <Spin spinning={loading} size="large">
+            <span className="list-item-descr">{item.description}</span>
+          </Spin>
         </List.Item>
       )}
     />

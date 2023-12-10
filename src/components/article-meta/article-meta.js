@@ -8,7 +8,8 @@ import api from '../../services/api'
 import './article-meta.scss'
 
 function ArticleMeta({ description, slug, author }) {
-  const user = useSelector((state) => state.auth.user.username)
+  const user = useSelector((state) => state.auth.user)
+
   const handleDeleteConfirm = async () => {
     try {
       const response = await api.deleteArticle(slug)
@@ -19,12 +20,11 @@ function ArticleMeta({ description, slug, author }) {
         message.success('Article deleted successfully')
       }
     } catch (error) {
-      console.error('Error deleting article:', error)
-      message.error('Failed to delete article')
+      message.error('Error deleting article:', error)
     }
   }
 
-  const isAuthor = user && user === author
+  const isAuthor = user && user.username === author
 
   return (
     <div className="meta-container">
@@ -41,7 +41,6 @@ function ArticleMeta({ description, slug, author }) {
               Delete
             </Button>
           </Popconfirm>
-
           <Link to={`/articles/${slug}/edit`}>
             <Button className="article_btn--edit">Edit</Button>
           </Link>
