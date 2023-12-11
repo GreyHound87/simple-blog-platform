@@ -59,7 +59,7 @@ function Signup() {
           rules={[{ required: true, message: 'Username' }]}
           validateStatus={error && error.username ? 'error' : ''}
         >
-          <Input />
+          <Input placeholder="Username" />
         </Form.Item>
 
         <Form.Item
@@ -68,7 +68,7 @@ function Signup() {
           rules={[{ required: true, message: 'Email address' }]}
           validateStatus={error && error.email ? 'error' : ''}
         >
-          <Input />
+          <Input placeholder="Email address" />
         </Form.Item>
 
         <Form.Item
@@ -77,7 +77,7 @@ function Signup() {
           rules={[{ required: true, message: 'Password' }]}
           validateStatus={error && error.password ? 'error' : ''}
         >
-          <Input.Password />
+          <Input.Password placeholder="Password" />
         </Form.Item>
 
         <Form.Item
@@ -97,7 +97,7 @@ function Signup() {
           ]}
           validateStatus={error && error.password ? 'error' : ''}
         >
-          <Input.Password />
+          <Input.Password placeholder="Password" />
         </Form.Item>
 
         <Form.Item
@@ -118,7 +118,7 @@ function Signup() {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button className="reg-form_btn" type="primary" htmlType="submit" loading={loading}>
             Create
           </Button>
         </Form.Item>

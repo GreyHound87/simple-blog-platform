@@ -50,7 +50,6 @@ const authSlice = createSlice({
       .addCase(registerUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
-        console.log(action.error)
         // eslint-disable-next-line no-param-reassign
         state.error = action.error.message
       })
@@ -89,7 +88,6 @@ const authSlice = createSlice({
         state.loading = false
         // eslint-disable-next-line no-param-reassign
         state.user = action.payload
-        console.log(state.user)
       })
       .addCase(reLoginUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
@@ -106,8 +104,14 @@ const authSlice = createSlice({
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.user = action.payload.user
+        if (action.payload.errors) {
+          // eslint-disable-next-line no-param-reassign
+          state.error = action.payload.errors
+        }
+        if (action.payload.user) {
+          // eslint-disable-next-line no-param-reassign
+          state.user = action.payload.user
+        }
       })
       .addCase(updateUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign

@@ -91,7 +91,6 @@ const api = {
     }
 
     const data = await response.json()
-    console.log(data)
     return data.user
   },
   updateUser: async (userDetails) => {
@@ -162,8 +161,6 @@ const api = {
     return data
   },
   favoriteArticle: async (slug, favorited) => {
-    console.log('slug', slug)
-    console.log('favorited', favorited)
     const url = `${API_BASE_URL}/articles/${slug}/favorite`
     const token = localStorage.getItem('authToken')
     const requestOptions = {

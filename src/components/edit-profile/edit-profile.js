@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Input, Button, message } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { updateUserAsync } from '../../redux/slices/authSlice'
+import { updateUserAsync, clearError } from '../../redux/slices/authSlice'
+import './edit-profile.scss'
 
 function EditProfile() {
   const dispatch = useDispatch()
@@ -15,74 +16,82 @@ function EditProfile() {
   const onFinish = async (values) => {
     try {
       await dispatch(updateUserAsync(values))
-      message.success('Profile updated successfully')
-      history.push('/')
     } catch (err) {
-      console.error('Error updating profile:', err)
-      message.error(err.message || 'Error updating profile')
+      message.error('Error updating profile')
     }
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  useEffect(
+    () => () => {
+      dispatch(clearError())
+    },
+    [dispatch]
+  )
 
-  /* const validateAvatar = (rule, value, callback) => {
-    if (value && !isValidUrl(value)) {
-      callback('Avatar image must be a valid URL')
-    } else {
-      callback()
+  useEffect(() => {
+    if (error) {
+      const errorMessages = Object.entries(error).map(([key, value]) => `${key} ${value}`)
+      message.error(`Error: ${errorMessages.join(', ')}`)
     }
-  }
+  }, [user, loading, error, history])
 
-  const isValidUrl = (url) => {
-    try {
-      new URL(url)
-      return true
-    } catch {
-      return false
-    }
-  } */
+  const onFinishFailed = () => {
+    message.error('Failed')
+  }
 
   return (
-    <div>
-      <h2>Edit Profile</h2>
+    <div className="profile-container">
+      <h2 className="profile-header">Edit Profile</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <Form
         name="editProfileForm"
+        className="profile-form"
+        layout="vertical"
+        requiredMark={false}
         initialValues={{ username: user.username, email: user.email }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Username is required' }]}>
-          <Input />
+        <Form.Item
+          label={<span className="username-label">Username</span>}
+          name="username"
+          rules={[{ required: true, message: 'Username is required' }]}
+          validateStatus={error && error.username ? 'error' : ''}
+        >
+          <Input placeholder="Username" />
         </Form.Item>
 
         <Form.Item
-          label="Email address"
+          label={<span className="email-label">Email address</span>}
           name="email"
           rules={[
             { required: true, message: 'Email address is required' },
             { type: 'email', message: 'Please enter a valid email address' },
           ]}
+          validateStatus={error && error.email ? 'error' : ''}
         >
-          <Input />
+          <Input placeholder="Email address" />
         </Form.Item>
 
         <Form.Item
-          label="New password"
+          label={<span className="password-label">New password</span>}
           name="password"
           rules={[{ min: 6, max: 40, message: 'Password must be 6 to 40 characters' }]}
+          validateStatus={error && error.password ? 'error' : ''}
         >
-          <Input.Password />
+          <Input.Password placeholder="New password" />
         </Form.Item>
 
-        <Form.Item label="Avatar image (url)" name="image">
-          <Input />
+        <Form.Item
+          label={<span className="avatar-label">Avatar image (url)</span>}
+          validateStatus={error && error.avatar ? 'error' : ''}
+          name="image"
+        >
+          <Input placeholder="Avatar image" />
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button className="profile-form_btn" type="primary" htmlType="submit" loading={loading}>
             Save Changes
           </Button>
         </Form.Item>
