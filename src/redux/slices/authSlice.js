@@ -34,13 +34,19 @@ const authSlice = createSlice({
       .addCase(registerUserAsync.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.user = action.payload.user
-        console.log(state.user)
+        if (action.payload.errors) {
+          // eslint-disable-next-line no-param-reassign
+          state.error = action.payload.errors
+        }
+        if (action.payload.user) {
+          // eslint-disable-next-line no-param-reassign
+          state.user = action.payload.user
+        }
       })
       .addCase(registerUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
+        console.log(action.error)
         // eslint-disable-next-line no-param-reassign
         state.error = action.error.message
       })

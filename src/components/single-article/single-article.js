@@ -34,7 +34,7 @@ function SingleArticle() {
         const articleData = await api.getArticle(slug)
         dispatch(setSelectedArticle(articleData))
       } catch (error) {
-        message.error('Error fetching article data:', error)
+        message.error(`Error fetching article data: ${error}`)
       } finally {
         setLoading(false)
       }

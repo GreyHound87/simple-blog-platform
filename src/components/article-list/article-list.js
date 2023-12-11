@@ -26,7 +26,7 @@ function ArticleList() {
         dispatch(setArticles(data.articles))
         setTotal(data.articlesCount)
       } catch (error) {
-        message.error('Error fetching data:', error)
+        message.error(`Error fetching data: ${error}`)
       } finally {
         setLoading(false)
       }

@@ -1,50 +1,77 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Input, Button, Space, Checkbox, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { registerUserAsync } from '../../redux/slices/authSlice'
+import './sign-up.scss'
 
 function Signup() {
   const dispatch = useDispatch()
   const history = useHistory()
   const loading = useSelector((state) => state.auth.loading)
   const error = useSelector((state) => state.auth.error)
+  const user = useSelector((state) => state.auth.user)
 
   const onFinish = async (values) => {
     try {
       await dispatch(registerUserAsync(values))
-      message.success('Register successful')
-      history.push('/')
     } catch (err) {
-      console.error('Error register:', err)
-      message.error('Register failed. Please check your credentials.')
+      message.error('Registration failed.')
     }
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+  useEffect(() => {
+    if (user && !loading && !error) {
+      message.success('Registration successful')
+      history.push('/')
+    } else if (error) {
+      const errorMessages = Object.entries(error).map(([key, value]) => `${key} ${value}`)
+      message.error(`Error: ${errorMessages.join(', ')}`)
+    }
+  }, [user, loading, error, history])
+
+  const onFinishFailed = () => {
+    message.error('Failed')
   }
 
   return (
-    <div>
-      <h2>Create new account</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <Form name="signupForm" onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Username' }]}>
+    <div className="reg-container">
+      <h2 className="reg-header">Create new account</h2>
+      <Form
+        name="signupForm"
+        className="reg-form"
+        layout="vertical"
+        requiredMark={false}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          label={<span className="username-label">Username</span>}
+          name="username"
+          rules={[{ required: true, message: 'Username' }]}
+        >
           <Input />
         </Form.Item>
 
-        <Form.Item label="Email address" name="email" rules={[{ required: true, message: 'Email address' }]}>
+        <Form.Item
+          label={<span className="email-label">Email address</span>}
+          name="email"
+          rules={[{ required: true, message: 'Email address' }]}
+        >
           <Input />
         </Form.Item>
 
-        <Form.Item label="Password" name="password" rules={[{ required: true, message: 'Password' }]}>
+        <Form.Item
+          label={<span className="password-label">Password</span>}
+          name="password"
+          rules={[{ required: true, message: 'Password' }]}
+        >
           <Input.Password />
         </Form.Item>
 
         <Form.Item
-          label="Repeat Password"
+          label={<span className="password-label">Repeat Password</span>}
           name="repeatPassword"
           dependencies={['password']}
           rules={[

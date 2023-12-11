@@ -53,8 +53,9 @@ const api = {
       body: JSON.stringify({ user: userData }),
     })
     const data = await response.json()
-    console.log(data)
-    localStorage.setItem('authToken', data.user.token)
+    if (data.user) {
+      localStorage.setItem('authToken', data.user.token)
+    }
     return data
   },
   loginUser: async (credentials) => {
