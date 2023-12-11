@@ -123,11 +123,12 @@ function Signup() {
           </Button>
         </Form.Item>
       </Form>
-
-      <Space>
+      <span className="reg-form_txt">
         Already have an account?
-        <Link to="/sign-in">Log In</Link>
-      </Space>
+        <Link to="/sign-in" className="reg-form_link">
+          Log In
+        </Link>
+      </span>
     </div>
   )
 }

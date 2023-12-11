@@ -42,13 +42,12 @@ function EditProfile() {
   return (
     <div className="profile-container">
       <h2 className="profile-header">Edit Profile</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Form
         name="editProfileForm"
         className="profile-form"
         layout="vertical"
         requiredMark={false}
-        initialValues={{ username: user.username, email: user.email }}
+        initialValues={user && { username: user.username, email: user.email }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >

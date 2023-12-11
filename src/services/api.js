@@ -93,30 +93,22 @@ const api = {
     const data = await response.json()
     return data.user
   },
+
   updateUser: async (userDetails) => {
     const url = `${API_BASE_URL}/user`
     const token = localStorage.getItem('authToken')
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ user: userDetails }),
+    })
 
-    try {
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify({ user: userDetails }),
-      })
+    const data = await response.json()
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.errors.message || 'Failed to update user')
-      }
-
-      const data = await response.json()
-      return data
-    } catch (error) {
-      throw new Error(error.message || 'Failed to update user')
-    }
+    return data
   },
   createArticle: async (articleData) => {
     const url = `${API_BASE_URL}/articles`
