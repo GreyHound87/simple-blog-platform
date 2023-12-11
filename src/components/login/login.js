@@ -1,9 +1,9 @@
-import React from 'react'
-import { Form, Input, Button, Space, message } from 'antd'
+import React, { useEffect } from 'react'
+import { Form, Input, Button, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { loginUserAsync } from '../../redux/slices/authSlice'
+import { loginUserAsync, clearError } from '../../redux/slices/authSlice'
 import './login.scss'
 
 function Login() {
@@ -18,14 +18,25 @@ function Login() {
       await dispatch(loginUserAsync(values))
     } catch (err) {
       message.error('Error logging in')
-    } finally {
-      if (error) {
-        message.error('Error logging in')
-      } else if (user) {
-        history.push('/')
-      }
     }
   }
+
+  useEffect(
+    () => () => {
+      dispatch(clearError())
+    },
+    [dispatch]
+  )
+
+  useEffect(() => {
+    if (user && !loading && !error) {
+      message.success('Login successful')
+      history.push('/')
+    } else if (error) {
+      const errorMessages = Object.entries(error).map(([key, value]) => `${key} ${value}`)
+      message.error(`Error: ${errorMessages.join(', ')}`)
+    }
+  }, [user, loading, error, history])
 
   return (
     <div className="login-container">
@@ -43,6 +54,7 @@ function Login() {
           label={<span className="email-label">Email address</span>}
           name="email"
           rules={[{ required: true, message: 'Please enter your email' }]}
+          validateStatus={error ? 'error' : ''}
         >
           <Input placeholder="Email address" />
         </Form.Item>
@@ -51,6 +63,7 @@ function Login() {
           label={<span className="password-label">Password</span>}
           name="password"
           rules={[{ required: true, message: 'Please enter your password' }]}
+          validateStatus={error ? 'error' : ''}
         >
           <Input.Password placeholder="Password" />
         </Form.Item>

@@ -3,7 +3,7 @@ import { Form, Input, Button, Space, Checkbox, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { registerUserAsync } from '../../redux/slices/authSlice'
+import { registerUserAsync, clearError } from '../../redux/slices/authSlice'
 import './sign-up.scss'
 
 function Signup() {
@@ -20,6 +20,13 @@ function Signup() {
       message.error('Registration failed.')
     }
   }
+
+  useEffect(
+    () => () => {
+      dispatch(clearError())
+    },
+    [dispatch]
+  )
 
   useEffect(() => {
     if (user && !loading && !error) {
@@ -50,6 +57,7 @@ function Signup() {
           label={<span className="username-label">Username</span>}
           name="username"
           rules={[{ required: true, message: 'Username' }]}
+          validateStatus={error && error.username ? 'error' : ''}
         >
           <Input />
         </Form.Item>
@@ -58,6 +66,7 @@ function Signup() {
           label={<span className="email-label">Email address</span>}
           name="email"
           rules={[{ required: true, message: 'Email address' }]}
+          validateStatus={error && error.email ? 'error' : ''}
         >
           <Input />
         </Form.Item>
@@ -66,6 +75,7 @@ function Signup() {
           label={<span className="password-label">Password</span>}
           name="password"
           rules={[{ required: true, message: 'Password' }]}
+          validateStatus={error && error.password ? 'error' : ''}
         >
           <Input.Password />
         </Form.Item>
@@ -85,6 +95,7 @@ function Signup() {
               },
             }),
           ]}
+          validateStatus={error && error.password ? 'error' : ''}
         >
           <Input.Password />
         </Form.Item>

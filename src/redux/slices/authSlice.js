@@ -22,6 +22,10 @@ const authSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.user = null
     },
+    clearError: (state) => {
+      // eslint-disable-next-line no-param-reassign
+      state.error = null
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,8 +63,14 @@ const authSlice = createSlice({
       .addCase(loginUserAsync.fulfilled, (state, action) => {
         // eslint-disable-next-line no-param-reassign
         state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.user = action.payload.user
+        if (action.payload.errors) {
+          // eslint-disable-next-line no-param-reassign
+          state.error = action.payload.errors
+        }
+        if (action.payload.user) {
+          // eslint-disable-next-line no-param-reassign
+          state.user = action.payload.user
+        }
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
         // eslint-disable-next-line no-param-reassign
@@ -109,5 +119,6 @@ const authSlice = createSlice({
 })
 
 export const { logoutUser } = authSlice.actions
+export const { clearError } = authSlice.actions
 
 export default authSlice.reducer
