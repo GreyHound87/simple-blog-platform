@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Form, Input, Button, Space, Checkbox, message } from 'antd'
+import { Form, Input, Button, Checkbox, message, Space } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -56,7 +56,10 @@ function Signup() {
         <Form.Item
           label={<span className="username-label">Username</span>}
           name="username"
-          rules={[{ required: true, message: 'Username' }]}
+          rules={[
+            { required: true, message: 'Username is required' },
+            { min: 3, max: 20, message: 'Username must be 3 to 20 characters' },
+          ]}
           validateStatus={error && error.username ? 'error' : ''}
         >
           <Input placeholder="Username" />
@@ -65,7 +68,10 @@ function Signup() {
         <Form.Item
           label={<span className="email-label">Email address</span>}
           name="email"
-          rules={[{ required: true, message: 'Email address' }]}
+          rules={[
+            { required: true, message: 'Email address' },
+            { type: 'email', message: 'Please enter a valid email address' },
+          ]}
           validateStatus={error && error.email ? 'error' : ''}
         >
           <Input placeholder="Email address" />
@@ -74,7 +80,10 @@ function Signup() {
         <Form.Item
           label={<span className="password-label">Password</span>}
           name="password"
-          rules={[{ required: true, message: 'Password' }]}
+          rules={[
+            { required: true, message: 'Please enter your password' },
+            { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
+          ]}
           validateStatus={error && error.password ? 'error' : ''}
         >
           <Input.Password placeholder="Password" />
@@ -124,7 +133,7 @@ function Signup() {
         </Form.Item>
       </Form>
       <span className="reg-form_txt">
-        Already have an account?
+        {'Already have an account? '}
         <Link to="/sign-in" className="reg-form_link">
           Log In
         </Link>

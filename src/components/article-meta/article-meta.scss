@@ -1,28 +1,28 @@
 @import '../../variables.scss';
 
 .meta-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .article-description--meta {
-    max-width: 83%;
+  max-width: 83%;
 }
 
 .meta-btn-wrapper {
-    min-width: 17%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 11px 0;
+  min-width: 17%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
 }
 
 .article_btn--del {
-    min-width: 78px;
+  min-width: 78px;
 }
 
 .article_btn--edit {
-    border: 1px solid $positive-border-color;
-    color: $positive-text-color;
-    min-width: 65px;
+  border: 1px solid $positive-border-color;
+  color: $positive-text-color;
+  min-width: 65px;
 }

@@ -53,7 +53,10 @@ function Login() {
         <Form.Item
           label={<span className="email-label">Email address</span>}
           name="email"
-          rules={[{ required: true, message: 'Please enter your email' }]}
+          rules={[
+            { required: true, message: 'Email address is required' },
+            { type: 'email', message: 'Please enter a valid email address' },
+          ]}
           validateStatus={error ? 'error' : ''}
         >
           <Input placeholder="Email address" />
@@ -62,7 +65,10 @@ function Login() {
         <Form.Item
           label={<span className="password-label">Password</span>}
           name="password"
-          rules={[{ required: true, message: 'Please enter your password' }]}
+          rules={[
+            { required: true, message: 'Please enter your password' },
+            { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
+          ]}
           validateStatus={error ? 'error' : ''}
         >
           <Input.Password placeholder="Password" />
