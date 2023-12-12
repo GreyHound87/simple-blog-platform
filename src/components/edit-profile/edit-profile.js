@@ -89,6 +89,7 @@ function EditProfile() {
 
         <Form.Item
           label={<span className="avatar-label">Avatar image (url)</span>}
+          rules={[{ type: 'url', message: 'This field must be a valid url.' }]}
           validateStatus={error && error.avatar ? 'error' : ''}
           name="image"
         >

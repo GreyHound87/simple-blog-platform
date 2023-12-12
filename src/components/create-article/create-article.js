@@ -15,7 +15,6 @@ function CreateArticle() {
         message.success('Article created successfully')
       }
     } catch (error) {
-      console.error('Error creating article:', error)
       message.error('Failed to create article')
     }
   }

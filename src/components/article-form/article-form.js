@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Input, Button, Tag, Space } from 'antd'
+import { Form, Input, Button, Tag } from 'antd'
 
 function ArticleForm({ onSubmit, initialValues }) {
   const [tags, setTags] = useState(initialValues?.tags || [])
@@ -23,36 +23,46 @@ function ArticleForm({ onSubmit, initialValues }) {
   return (
     <Form
       name="articleForm"
+      className="article-form"
+      layout="vertical"
+      requiredMark={false}
       initialValues={initialValues}
       onFinish={handleSubmit}
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 16 }}
     >
-      <Form.Item label="Title" name="title" rules={[{ required: true, message: 'Please enter the title' }]}>
-        <Input />
+      <Form.Item
+        label={<span className="title-label">Title</span>}
+        name="title"
+        rules={[{ required: true, message: 'Please enter the title' }]}
+      >
+        <Input placeholder="Title" />
       </Form.Item>
 
       <Form.Item
-        label="Short Description"
+        label={<span className="description-label">Short Description</span>}
         name="description"
         rules={[{ required: true, message: 'Please enter a short description' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea placeholder="Short Description" />
       </Form.Item>
 
-      <Form.Item label="Text" name="body" rules={[{ required: true, message: 'Please enter the text' }]}>
-        <Input.TextArea />
+      <Form.Item
+        label={<span className="text-label">Text</span>}
+        name="body"
+        rules={[{ required: true, message: 'Please enter the text' }]}
+      >
+        <Input.TextArea placeholder="Text" />
       </Form.Item>
 
-      <Form.Item label="Tags" name="tagList">
-        <div>
-          <Space>
-            {tags.map((tag) => (
-              <Tag key={tag} closable onClose={() => handleTagDelete(tag)}>
-                {tag}
-              </Tag>
-            ))}
-          </Space>
+      <Form.Item label={<span className="tags-label">Tags</span>} name="tagList">
+        <div className="tags-container">
+          {tags.map((tag) => (
+            <Tag key={tag} className="article-form_tag" closable onClose={() => handleTagDelete(tag)}>
+              {tag}
+            </Tag>
+          ))}
+
           <Input
             placeholder="New Tag"
             value={tagInput}
@@ -64,7 +74,7 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+        <Button className="article-form_btn" type="primary" htmlType="submit">
           Send
         </Button>
       </Form.Item>
