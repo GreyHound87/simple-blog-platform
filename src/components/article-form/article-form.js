@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button, Tag } from 'antd'
+import './article-form.scss'
 
 function ArticleForm({ onSubmit, initialValues }) {
   const [tags, setTags] = useState(initialValues?.tags || [])

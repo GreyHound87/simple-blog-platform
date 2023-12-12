@@ -1,0 +1,18 @@
+  .profile-form {
+    &_btn {
+      width: 100%;
+    }
+  }
+  
+  .title-label,
+  .description-label,
+  .text-label,
+  .tags-label {
+    color: #262626;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  
