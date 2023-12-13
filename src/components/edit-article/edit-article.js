@@ -18,14 +18,13 @@ function EditArticle() {
         message.success('Article edited successfully')
       }
     } catch (error) {
-      console.error('Error editing article:', error)
       message.error('Failed to edit article')
     }
   }
 
   return (
-    <div>
-      <h2>Edit article</h2>
+    <div className="article-container">
+      <h2 className="form-header">Edit article</h2>
       <ArticleForm onSubmit={handleSubmit} initialValues={initialValues} />
     </div>
   )

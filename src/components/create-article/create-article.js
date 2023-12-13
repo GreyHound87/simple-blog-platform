@@ -7,7 +7,6 @@ import './create-article.scss'
 
 function CreateArticle() {
   const handleSubmit = async (articleData) => {
-    console.log(articleData)
     try {
       const response = await api.createArticle(articleData)
 

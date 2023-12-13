@@ -113,7 +113,6 @@ const api = {
   createArticle: async (articleData) => {
     const url = `${API_BASE_URL}/articles`
     const token = localStorage.getItem('authToken')
-    console.log(articleData)
     const response = await fetch(url, {
       method: 'POST',
       headers: {
