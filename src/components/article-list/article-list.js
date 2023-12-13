@@ -18,6 +18,10 @@ function ArticleList() {
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(false)
 
+  message.config({
+    maxCount: 1,
+  })
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {

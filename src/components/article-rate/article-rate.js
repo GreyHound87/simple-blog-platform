@@ -34,6 +34,11 @@ const filledSvg = (
 
 function ArticleRate({ slug, favorited, onLikeUpdate }) {
   const authToken = localStorage.getItem('authToken')
+
+  message.config({
+    maxCount: 1,
+  })
+
   const handleFavoriteArticle = async () => {
     try {
       const response = await api.favoriteArticle(slug, favorited)

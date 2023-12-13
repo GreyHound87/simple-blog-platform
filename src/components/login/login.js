@@ -13,6 +13,10 @@ function Login() {
   const error = useSelector((state) => state.auth.error)
   const user = useSelector((state) => state.auth.user)
 
+  message.config({
+    maxCount: 1,
+  })
+
   const onFinish = async (values) => {
     try {
       await dispatch(loginUserAsync(values))

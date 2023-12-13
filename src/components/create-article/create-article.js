@@ -10,6 +10,10 @@ import './create-article.scss'
 function CreateArticle() {
   const user = useSelector((state) => state.auth.user)
 
+  message.config({
+    maxCount: 1,
+  })
+
   const handleSubmit = async (articleData) => {
     try {
       const response = await api.createArticle(articleData)

@@ -10,6 +10,10 @@ import './article-meta.scss'
 function ArticleMeta({ description, slug, author }) {
   const user = useSelector((state) => state.auth.user)
 
+  message.config({
+    maxCount: 1,
+  })
+
   const handleDeleteConfirm = async () => {
     try {
       const response = await api.deleteArticle(slug)

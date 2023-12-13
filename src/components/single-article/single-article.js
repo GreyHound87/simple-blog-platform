@@ -27,6 +27,10 @@ function SingleArticle() {
   }
   const selectedArticle = useSelector((state) => state.articles.selectedArticle)
 
+  message.config({
+    maxCount: 1,
+  })
+
   useEffect(() => {
     const getArticleData = async () => {
       try {

@@ -13,6 +13,10 @@ function EditProfile() {
   const loading = useSelector((state) => state.auth.loading)
   const error = useSelector((state) => state.auth.error)
 
+  message.config({
+    maxCount: 1,
+  })
+
   const onFinish = async (values) => {
     try {
       await dispatch(updateUserAsync(values))
