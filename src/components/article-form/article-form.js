@@ -3,12 +3,12 @@ import { Form, Input, Button, Tag } from 'antd'
 import './article-form.scss'
 
 function ArticleForm({ onSubmit, initialValues }) {
-  const [tags, setTags] = useState(initialValues?.tags || [])
+  const [tagList, setTagList] = useState(initialValues?.tagList || [])
   const [tagInput, setTagInput] = useState('')
 
   const handleTagAdd = () => {
-    if (tagInput.trim() !== '' && !tags.includes(tagInput)) {
-      setTags([...tags, tagInput.trim()])
+    if (tagInput.trim() !== '' && !tagList.includes(tagInput)) {
+      setTagList([...tagList, tagInput.trim()])
       setTagInput('')
     }
   }
@@ -18,11 +18,11 @@ function ArticleForm({ onSubmit, initialValues }) {
   }
 
   const handleTagDelete = (tagToDelete) => {
-    setTags(tags.filter((tag) => tag !== tagToDelete))
+    setTagList(tagList.filter((tag) => tag !== tagToDelete))
   }
 
   const handleSubmit = (values) => {
-    onSubmit({ ...values, tags })
+    onSubmit({ ...values, tagList })
   }
 
   return (
@@ -60,9 +60,9 @@ function ArticleForm({ onSubmit, initialValues }) {
 
       <Form.Item label={<span className="tags-label">Tags</span>} name="tagList">
         <>
-          <div className="tags-container">
-            {tags.map((tag) => (
-              <div key={tag} className="tag-container">
+          <div className="tags-wrapper">
+            {tagList.map((tag) => (
+              <div key={tag} className="tag-wrapper">
                 <Tag className="article-form_tag">{tag}</Tag>
                 <Button type="primary" danger onClick={() => handleTagDelete(tag)}>
                   Delete
@@ -70,7 +70,7 @@ function ArticleForm({ onSubmit, initialValues }) {
               </div>
             ))}
           </div>
-          <div className="new-tag-container">
+          <div className="new-tag-wrapper">
             <Input
               className="new-tag-input"
               placeholder="New Tag"
@@ -78,7 +78,7 @@ function ArticleForm({ onSubmit, initialValues }) {
               onChange={(e) => setTagInput(e.target.value)}
               onPressEnter={handleTagAdd}
             />
-            <Button type="primary" danger onClick={() => clearTagInput}>
+            <Button type="primary" danger onClick={clearTagInput}>
               Delete
             </Button>
             <Button type="primary" onClick={handleTagAdd}>
