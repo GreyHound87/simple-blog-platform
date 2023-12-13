@@ -3,6 +3,7 @@ import { message } from 'antd'
 
 import ArticleForm from '../article-form/article-form'
 import api from '../../services/api'
+import './create-article.scss'
 
 function CreateArticle() {
   const handleSubmit = async (articleData) => {
@@ -20,8 +21,8 @@ function CreateArticle() {
   }
 
   return (
-    <div>
-      <h2>Create new article</h2>
+    <div className="article-container">
+      <h2 className="form-header">Create new article</h2>
       <ArticleForm onSubmit={handleSubmit} />
     </div>
   )

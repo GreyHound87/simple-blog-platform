@@ -13,6 +13,10 @@ function ArticleForm({ onSubmit, initialValues }) {
     }
   }
 
+  const clearTagInput = () => {
+    setTagInput('')
+  }
+
   const handleTagDelete = (tagToDelete) => {
     setTags(tags.filter((tag) => tag !== tagToDelete))
   }
@@ -29,8 +33,6 @@ function ArticleForm({ onSubmit, initialValues }) {
       requiredMark={false}
       initialValues={initialValues}
       onFinish={handleSubmit}
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 16 }}
     >
       <Form.Item
         label={<span className="title-label">Title</span>}
@@ -57,24 +59,36 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item label={<span className="tags-label">Tags</span>} name="tagList">
-        <div className="tags-container">
-          {tags.map((tag) => (
-            <Tag key={tag} className="article-form_tag" closable onClose={() => handleTagDelete(tag)}>
-              {tag}
-            </Tag>
-          ))}
-
-          <Input
-            placeholder="New Tag"
-            value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
-            onPressEnter={handleTagAdd}
-            onBlur={handleTagAdd}
-          />
-        </div>
+        <>
+          <div className="tags-container">
+            {tags.map((tag) => (
+              <div key={tag} className="tag-container">
+                <Tag className="article-form_tag">{tag}</Tag>
+                <Button type="primary" danger onClick={() => handleTagDelete(tag)}>
+                  Delete
+                </Button>
+              </div>
+            ))}
+          </div>
+          <div className="new-tag-container">
+            <Input
+              className="new-tag-input"
+              placeholder="New Tag"
+              value={tagInput}
+              onChange={(e) => setTagInput(e.target.value)}
+              onPressEnter={handleTagAdd}
+            />
+            <Button type="primary" danger onClick={() => clearTagInput}>
+              Delete
+            </Button>
+            <Button type="primary" onClick={handleTagAdd}>
+              Add Tag
+            </Button>
+          </div>
+        </>
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+      <Form.Item>
         <Button className="article-form_btn" type="primary" htmlType="submit">
           Send
         </Button>
