@@ -1,4 +1,6 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { message } from 'antd'
 
 import ArticleForm from '../article-form/article-form'
@@ -6,6 +8,8 @@ import api from '../../services/api'
 import './create-article.scss'
 
 function CreateArticle() {
+  const user = useSelector((state) => state.auth.user)
+
   const handleSubmit = async (articleData) => {
     try {
       const response = await api.createArticle(articleData)
@@ -18,6 +22,10 @@ function CreateArticle() {
     } catch (error) {
       message.error('Failed to create article')
     }
+  }
+
+  if (!user) {
+    return <Redirect to="/sign-in" />
   }
 
   return (
