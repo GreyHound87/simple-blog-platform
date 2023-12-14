@@ -65,8 +65,17 @@ function Signup() {
             { min: 3, max: 20, message: 'Username must be 3 to 20 characters' },
           ]}
           validateStatus={error && error.username ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input className="username-input" placeholder="Username" />
+          <Input
+            className="username-input"
+            placeholder="Username"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -77,8 +86,17 @@ function Signup() {
             { type: 'email', message: 'Please enter a valid email address' },
           ]}
           validateStatus={error && error.email ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input className="email-input" placeholder="Email address" />
+          <Input
+            className="email-input"
+            placeholder="Email address"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -89,8 +107,17 @@ function Signup() {
             { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
           ]}
           validateStatus={error && error.password ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input.Password className="password-input" placeholder="Password" />
+          <Input.Password
+            className="password-input"
+            placeholder="Password"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -109,8 +136,17 @@ function Signup() {
             }),
           ]}
           validateStatus={error && error.password ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input.Password className="password-input" placeholder="Password" />
+          <Input.Password
+            className="password-input"
+            placeholder="Password"
+            style={{
+              marginBottom: '20px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -126,8 +162,13 @@ function Signup() {
               },
             }),
           ]}
+          style={{
+            marginBottom: '25px',
+          }}
         >
-          <Checkbox>I agree to the processing of my personal information</Checkbox>
+          <Checkbox>
+            <span className="checkbox-txt">I agree to the processing of my personal information</span>
+          </Checkbox>
         </Form.Item>
 
         <Form.Item>
@@ -139,7 +180,7 @@ function Signup() {
       <span className="reg-form_txt">
         {'Already have an account? '}
         <Link to="/sign-in" className="reg-form_link">
-          Log In
+          Sing In
         </Link>
       </span>
     </div>
