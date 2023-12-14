@@ -76,7 +76,10 @@ function ArticleForm({ onSubmit, initialValues }) {
               placeholder="New Tag"
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
-              onPressEnter={handleTagAdd}
+              onPressEnter={(e) => {
+                e.preventDefault()
+                handleTagAdd()
+              }}
             />
             <Button type="primary" danger onClick={clearTagInput}>
               Delete
