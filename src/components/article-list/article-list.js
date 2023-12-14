@@ -47,6 +47,7 @@ function ArticleList() {
       dataSource={articles}
       pagination={{
         size: 'small',
+        showLessItems: true,
         defaultPageSize: limit,
         total,
         showSizeChanger: false,

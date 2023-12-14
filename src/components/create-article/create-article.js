@@ -20,14 +20,12 @@ function CreateArticle() {
       const response = await api.createArticle(articleData)
 
       if (response.errors) {
-        console.log(response.errors)
         message.error('Failed to create article')
       } else {
         message.success('Article created successfully')
         history.push('/')
       }
     } catch (error) {
-      console.log(error)
       message.error('Failed to create article')
     }
   }
