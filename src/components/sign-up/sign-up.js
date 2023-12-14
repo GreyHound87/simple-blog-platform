@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Form, Input, Button, Checkbox, message, Space } from 'antd'
+import { Form, Input, Button, Checkbox, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -66,7 +66,7 @@ function Signup() {
           ]}
           validateStatus={error && error.username ? 'error' : ''}
         >
-          <Input placeholder="Username" />
+          <Input className="username-input" placeholder="Username" />
         </Form.Item>
 
         <Form.Item
@@ -78,7 +78,7 @@ function Signup() {
           ]}
           validateStatus={error && error.email ? 'error' : ''}
         >
-          <Input placeholder="Email address" />
+          <Input className="email-input" placeholder="Email address" />
         </Form.Item>
 
         <Form.Item
@@ -90,7 +90,7 @@ function Signup() {
           ]}
           validateStatus={error && error.password ? 'error' : ''}
         >
-          <Input.Password placeholder="Password" />
+          <Input.Password className="password-input" placeholder="Password" />
         </Form.Item>
 
         <Form.Item
@@ -110,7 +110,7 @@ function Signup() {
           ]}
           validateStatus={error && error.password ? 'error' : ''}
         >
-          <Input.Password placeholder="Password" />
+          <Input.Password className="password-input" placeholder="Password" />
         </Form.Item>
 
         <Form.Item
