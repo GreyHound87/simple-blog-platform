@@ -23,11 +23,18 @@
 /* .list-item-descr {
 } */
 
+.list .ant-pagination.ant-pagination-mini .ant-pagination-item  {
+  margin: 0 5px;
+}
+
 .list .ant-pagination-item-active {
   background-color: rgba(24, 144, 255, 1);
-  border-color: rgba(24, 144, 255, 1);
+  border-color: rgba(24, 144, 255, 0);
 }
 
 .list .ant-pagination-item-active a {
   color: rgba(255, 255, 255, 1);
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
 }
