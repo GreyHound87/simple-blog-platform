@@ -61,8 +61,8 @@ function Signup() {
           label={<span className="username-label">Username</span>}
           name="username"
           rules={[
-            { required: true, message: 'Username is required' },
-            { min: 3, max: 20, message: 'Username must be 3 to 20 characters' },
+            { required: true, message: 'Please enter your username.' },
+            { min: 3, max: 20, message: 'Your username needs to be at least 3 to 20 characters.' },
           ]}
           validateStatus={error && error.username ? 'error' : ''}
           style={{
@@ -82,8 +82,8 @@ function Signup() {
           label={<span className="email-label">Email address</span>}
           name="email"
           rules={[
-            { required: true, message: 'Email address' },
-            { type: 'email', message: 'Please enter a valid email address' },
+            { required: true, message: 'Please enter your email address.' },
+            { type: 'email', message: 'Your email needs to be valid.' },
           ]}
           validateStatus={error && error.email ? 'error' : ''}
           style={{
@@ -103,8 +103,8 @@ function Signup() {
           label={<span className="password-label">Password</span>}
           name="password"
           rules={[
-            { required: true, message: 'Please enter your password' },
-            { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
+            { required: true, message: 'Please enter your password.' },
+            { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error && error.password ? 'error' : ''}
           style={{
@@ -125,13 +125,13 @@ function Signup() {
           name="repeatPassword"
           dependencies={['password']}
           rules={[
-            { required: true, message: 'Repeat Password' },
+            { required: true, message: 'Please repeat your password.' },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve()
                 }
-                return Promise.reject(new Error('Passwords do not match'))
+                return Promise.reject(new Error('Passwords must match.'))
               },
             }),
           ]}
@@ -158,7 +158,7 @@ function Signup() {
                 if (value) {
                   return Promise.resolve()
                 }
-                return Promise.reject(new Error('Agree to the processing of your personal information'))
+                return Promise.reject(new Error('You need to agree to the processing of your personal information.'))
               },
             }),
           ]}
@@ -171,7 +171,11 @@ function Signup() {
           </Checkbox>
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+          style={{
+            marginBottom: '10px',
+          }}
+        >
           <Button className="reg-form_btn" type="primary" htmlType="submit" loading={loading}>
             Create
           </Button>
