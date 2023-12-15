@@ -38,24 +38,51 @@ function ArticleForm({ onSubmit, initialValues }) {
         label={<span className="title-label">Title</span>}
         name="title"
         rules={[{ required: true, message: 'Please enter the title' }]}
+        style={{
+          marginBottom: '3px',
+        }}
       >
-        <Input placeholder="Title" />
+        <Input
+          className="title-input"
+          placeholder="Title"
+          style={{
+            marginBottom: '3px',
+          }}
+        />
       </Form.Item>
 
       <Form.Item
         label={<span className="description-label">Short Description</span>}
         name="description"
         rules={[{ required: true, message: 'Please enter a short description' }]}
+        style={{
+          marginBottom: '3px',
+        }}
       >
-        <Input.TextArea placeholder="Short Description" />
+        <Input.TextArea
+          className="description-input"
+          placeholder="Short Description"
+          style={{
+            marginBottom: '3px',
+          }}
+        />
       </Form.Item>
 
       <Form.Item
         label={<span className="text-label">Text</span>}
         name="body"
         rules={[{ required: true, message: 'Please enter the text' }]}
+        style={{
+          marginBottom: '3px',
+        }}
       >
-        <Input.TextArea placeholder="Text" />
+        <Input.TextArea
+          className="text-input"
+          placeholder="Text"
+          style={{
+            marginBottom: '3px',
+          }}
+        />
       </Form.Item>
 
       <Form.Item label={<span className="tags-label">Tags</span>} name="tagList">
@@ -64,7 +91,13 @@ function ArticleForm({ onSubmit, initialValues }) {
             {tagList.map((tag) => (
               <div key={tag} className="tag-wrapper">
                 <Tag className="article-form_tag">{tag}</Tag>
-                <Button type="primary" danger onClick={() => handleTagDelete(tag)}>
+                <Button
+                  className="article-form_btn--del-tag"
+                  size="large"
+                  type="primary"
+                  danger
+                  onClick={() => handleTagDelete(tag)}
+                >
                   Delete
                 </Button>
               </div>
@@ -81,10 +114,10 @@ function ArticleForm({ onSubmit, initialValues }) {
                 handleTagAdd()
               }}
             />
-            <Button type="primary" danger onClick={clearTagInput}>
+            <Button className="article-form_btn--del-tag" size="large" type="primary" danger onClick={clearTagInput}>
               Delete
             </Button>
-            <Button type="primary" onClick={handleTagAdd}>
+            <Button className="article-form_btn--add-tag" size="large" type="primary" onClick={handleTagAdd}>
               Add Tag
             </Button>
           </div>
