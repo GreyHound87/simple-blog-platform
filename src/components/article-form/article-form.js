@@ -93,7 +93,7 @@ function ArticleForm({ onSubmit, initialValues }) {
         label={<span className="tags-label">Tags</span>}
         name="tagList"
         style={{
-          marginBottom: '3px',
+          marginBottom: '16px',
         }}
       >
         <>
@@ -110,7 +110,7 @@ function ArticleForm({ onSubmit, initialValues }) {
           <div className="new-tag-wrapper">
             <Input
               className="new-tag-input"
-              placeholder="New Tag"
+              placeholder="Tag"
               style={{
                 marginBottom: '3px',
               }}
@@ -132,7 +132,7 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item>
-        <Button className="article-form_btn" type="primary" htmlType="submit">
+        <Button className="article-form_btn" size="large" type="primary" htmlType="submit">
           Send
         </Button>
       </Form.Item>
