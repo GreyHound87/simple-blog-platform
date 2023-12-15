@@ -1,42 +1,42 @@
-  .article-form {
-    &_btn {
-      width: 36.5%;
-      &--del-tag {
-        min-width: 118px;
-        margin-right: 18px;
-      }
-      &--add-tag {
-        border: 1px solid #1890FF;
-        color: #1890FF;
-        min-width: 136px;
-      }
-    }
-    &_tag {
-      min-width: 300px;
-      min-height: 40px;
-      align-self: baseline;
+.article-form {
+  &_btn {
+    width: 36.5%;
+    &--del-tag {
+      min-width: 118px;
       margin-right: 18px;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px;
-      color: rgba(0, 0, 0, 0.75);
-      padding: 6px 13px;
+    }
+    &--add-tag {
+      border: 1px solid #1890ff;
+      color: #1890ff;
+      min-width: 136px;
     }
   }
-  
-  .title-label,
-  .description-label,
-  .text-label,
-  .tags-label {
-    color: #262626;
+  &_tag {
+    min-width: 300px;
+    min-height: 40px;
+    align-self: baseline;
+    margin-right: 18px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 6px 13px;
   }
+}
+
+.title-label,
+.description-label,
+.text-label,
+.tags-label {
+  color: #262626;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
 
 .title-input,
 .description-input,
@@ -44,18 +44,17 @@
   line-height: 30px;
 }
 
-  .tags-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
+.tags-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 
-  .tag-wrapper {
-    display: flex;
-    margin-bottom: 5px;
-  }
+.tag-wrapper {
+  display: flex;
+  margin-bottom: 5px;
+}
 
-  .new-tag-input {
-    width: 300px;
-    margin-right: 18px;
-  }
-  
+.new-tag-input {
+  width: 300px;
+  margin-right: 18px;
+}
