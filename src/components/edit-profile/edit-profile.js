@@ -51,7 +51,7 @@ function EditProfile() {
         className="profile-form"
         layout="vertical"
         requiredMark={false}
-        initialValues={user && { username: user.username, email: user.email }}
+        initialValues={user && { username: user.username, email: user.email, image: user.image }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
@@ -59,50 +59,90 @@ function EditProfile() {
           label={<span className="username-label">Username</span>}
           name="username"
           rules={[
-            { required: true, message: 'Username is required' },
-            { min: 3, max: 20, message: 'Username must be 3 to 20 characters' },
+            { required: true, message: 'Please enter your username.' },
+            { min: 3, max: 20, message: 'Your username needs to be at least 3 to 20 characters.' },
           ]}
           validateStatus={error && error.username ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input placeholder="Username" />
+          <Input
+            className="username-input"
+            placeholder="Username"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
           label={<span className="email-label">Email address</span>}
           name="email"
           rules={[
-            { required: true, message: 'Email address is required' },
-            { type: 'email', message: 'Please enter a valid email address' },
+            { required: true, message: 'Please enter your email address.' },
+            { type: 'email', message: 'Your email needs to be valid.' },
           ]}
           validateStatus={error && error.email ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input placeholder="Email address" />
+          <Input
+            className="email-input"
+            placeholder="Email address"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
           label={<span className="password-label">New password</span>}
           name="password"
           rules={[
-            { required: true, message: 'Please enter your password' },
-            { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
+            { required: true, message: 'Please enter your password.' },
+            { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error && error.password ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input.Password placeholder="New password" />
+          <Input.Password
+            className="password-input"
+            placeholder="New password"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
           label={<span className="avatar-label">Avatar image (url)</span>}
-          rules={[{ type: 'url', message: 'This field must be a valid url.' }]}
+          rules={[{ type: 'url', message: 'Your avatar image needs to be a valid url.' }]}
           validateStatus={error && error.avatar ? 'error' : ''}
           name="image"
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input placeholder="Avatar image" />
+          <Input
+            className="avatar-input"
+            placeholder="Avatar image"
+            style={{
+              marginBottom: '16px',
+            }}
+          />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+          style={{
+            marginBottom: '10px',
+          }}
+        >
           <Button className="profile-form_btn" type="primary" htmlType="submit" loading={loading}>
-            Save Changes
+            Save
           </Button>
         </Form.Item>
       </Form>
