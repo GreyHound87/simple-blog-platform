@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Avatar, Card, message, Spin } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
 import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
@@ -15,6 +15,7 @@ import './single-article.scss'
 const { Meta } = Card
 
 function SingleArticle() {
+  const history = useHistory()
   const dispatch = useDispatch()
   const { slug } = useParams()
   const [loading, setLoading] = useState(false)
@@ -38,7 +39,8 @@ function SingleArticle() {
         const articleData = await api.getArticle(slug)
         dispatch(setSelectedArticle(articleData))
       } catch (error) {
-        message.error(`Error fetching article data: ${error}`)
+        message.error('Error fetching article data')
+        history.push('/')
       } finally {
         setLoading(false)
       }
