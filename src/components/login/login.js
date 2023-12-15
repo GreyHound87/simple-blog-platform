@@ -58,12 +58,21 @@ function Login() {
           label={<span className="email-label">Email address</span>}
           name="email"
           rules={[
-            { required: true, message: 'Email address is required' },
-            { type: 'email', message: 'Please enter a valid email address' },
+            { required: true, message: 'Please enter your email address' },
+            { type: 'email', message: 'Your email needs to be valid' },
           ]}
           validateStatus={error ? 'error' : ''}
+          style={{
+            marginBottom: '3px',
+          }}
         >
-          <Input placeholder="Email address" />
+          <Input
+            className="email-input"
+            placeholder="Email address"
+            style={{
+              marginBottom: '3px',
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -71,21 +80,28 @@ function Login() {
           name="password"
           rules={[
             { required: true, message: 'Please enter your password' },
-            { min: 6, max: 40, message: 'Password must be 6 to 40 characters' },
+            { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error ? 'error' : ''}
+          style={{
+            marginBottom: '19px',
+          }}
         >
-          <Input.Password placeholder="Password" />
+          <Input.Password className="password-input" placeholder="Password" />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+          style={{
+            marginBottom: '10px',
+          }}
+        >
           <Button className="login-form_btn" type="primary" htmlType="submit" loading={loading}>
             Login
           </Button>
         </Form.Item>
       </Form>
       <span className="login-form_txt">
-        Don’t have an account?
+        {'Don’t have an account? '}
         <Link className="login-form_link" to="/sign-up">
           Sign Up
         </Link>
