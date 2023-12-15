@@ -46,7 +46,7 @@ function ArticleForm({ onSubmit, initialValues }) {
           className="title-input"
           placeholder="Title"
           style={{
-            marginBottom: '3px',
+            marginBottom: '12px',
           }}
         />
       </Form.Item>
@@ -62,8 +62,10 @@ function ArticleForm({ onSubmit, initialValues }) {
         <Input.TextArea
           className="description-input"
           placeholder="Short Description"
+          rows={1}
           style={{
-            marginBottom: '3px',
+            marginBottom: '12px',
+            lineHeight: '30px',
           }}
         />
       </Form.Item>
@@ -79,25 +81,27 @@ function ArticleForm({ onSubmit, initialValues }) {
         <Input.TextArea
           className="text-input"
           placeholder="Text"
+          rows={5}
           style={{
-            marginBottom: '3px',
+            marginBottom: '20px',
+            lineHeight: '30px',
           }}
         />
       </Form.Item>
 
-      <Form.Item label={<span className="tags-label">Tags</span>} name="tagList">
+      <Form.Item
+        label={<span className="tags-label">Tags</span>}
+        name="tagList"
+        style={{
+          marginBottom: '3px',
+        }}
+      >
         <>
           <div className="tags-wrapper">
             {tagList.map((tag) => (
               <div key={tag} className="tag-wrapper">
                 <Tag className="article-form_tag">{tag}</Tag>
-                <Button
-                  className="article-form_btn--del-tag"
-                  size="large"
-                  type="primary"
-                  danger
-                  onClick={() => handleTagDelete(tag)}
-                >
+                <Button className="article-form_btn--del-tag" size="large" danger onClick={() => handleTagDelete(tag)}>
                   Delete
                 </Button>
               </div>
@@ -107,6 +111,9 @@ function ArticleForm({ onSubmit, initialValues }) {
             <Input
               className="new-tag-input"
               placeholder="New Tag"
+              style={{
+                marginBottom: '3px',
+              }}
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onPressEnter={(e) => {
@@ -114,10 +121,10 @@ function ArticleForm({ onSubmit, initialValues }) {
                 handleTagAdd()
               }}
             />
-            <Button className="article-form_btn--del-tag" size="large" type="primary" danger onClick={clearTagInput}>
+            <Button className="article-form_btn--del-tag" size="large" danger onClick={clearTagInput}>
               Delete
             </Button>
-            <Button className="article-form_btn--add-tag" size="large" type="primary" onClick={handleTagAdd}>
+            <Button className="article-form_btn--add-tag" size="large" onClick={handleTagAdd}>
               Add Tag
             </Button>
           </div>

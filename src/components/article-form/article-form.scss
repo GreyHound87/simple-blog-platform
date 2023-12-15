@@ -1,6 +1,19 @@
   .article-form {
     &_btn {
       width: 100%;
+      &--del-tag {
+        min-width: 86px;
+      }
+      &--add-tag {
+        border: 1px solid #1890FF;
+        color: #1890FF;
+        min-width: 104px;
+      }
+    }
+    &_tag {
+      min-width: 300px;
+      min-height: 40px;
+      align-self: baseline;
     }
   }
   
@@ -16,9 +29,19 @@
     line-height: 22px;
   }
 
+.title-input,
+.description-input,
+.new-tag-input {
+  line-height: 30px;
+}
+
   .tags-wrapper {
     display: flex;
     flex-direction: column;
+  }
+
+  .tag-wrapper {
+    display: flex;
   }
 
   .new-tag-input {
