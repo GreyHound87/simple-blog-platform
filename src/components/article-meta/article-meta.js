@@ -36,7 +36,9 @@ function ArticleMeta({ description, slug, author }) {
       {isAuthor && (
         <div className="meta-btn-wrapper">
           <Popconfirm
-            title="Are you sure you want to delete this article?"
+            placement="rightTop"
+            title="Are you sure to delete this article?"
+            overlayStyle={{ maxWidth: '232px' }}
             onConfirm={handleDeleteConfirm}
             okText="Yes"
             cancelText="No"

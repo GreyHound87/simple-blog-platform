@@ -47,7 +47,7 @@ function SingleArticle() {
     }
 
     getArticleData()
-  }, [dispatch, slug])
+  }, [dispatch, slug, history])
 
   if (!selectedArticle) {
     return null
