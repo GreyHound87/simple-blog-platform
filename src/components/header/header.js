@@ -34,7 +34,6 @@ function Header() {
   if (user) {
     extraContent = (
       <>
-        {/* to="/new-article" */}
         <Button className="header_btn--create" onClick={handleCreateArticle}>
           <span className="btn-txt--sm">Create article</span>
         </Button>
@@ -43,7 +42,6 @@ function Header() {
           <span className="username">{user.username}</span>
           <Avatar src={user.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
         </Link>
-        {/* to="/" */}
         <Button size="large" className="header_btn--log-out" onClick={handleLogout}>
           <span className="btn-txt">Log Out</span>
         </Button>
@@ -52,12 +50,10 @@ function Header() {
   } else {
     extraContent = (
       <>
-        {/* to="/sign-in" */}
         <Button type="text" size="large" className="header_btn--sign-in" onClick={handleSignIn}>
           <span className="btn-txt">Sign In</span>
         </Button>
 
-        {/*  to="/sign-up" */}
         <Button type="text" size="large" className="header_btn--sign-up" onClick={handleSignUp}>
           <span className="btn-txt">Sign Up</span>
         </Button>
