@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Popconfirm, message } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import api from '../../services/api'
@@ -8,6 +8,7 @@ import api from '../../services/api'
 import './article-meta.scss'
 
 function ArticleMeta({ description, slug, author }) {
+  const history = useHistory()
   const user = useSelector((state) => state.auth.user)
 
   message.config({
@@ -15,16 +16,12 @@ function ArticleMeta({ description, slug, author }) {
   })
 
   const handleDeleteConfirm = async () => {
-    try {
-      const response = await api.deleteArticle(slug)
-
-      if (response.errors) {
-        message.error('Failed to delete article')
-      } else {
-        message.success('Article deleted successfully')
-      }
-    } catch (error) {
-      message.error('Error deleting article:', error)
+    const isDeleted = await api.deleteArticle(slug)
+    if (isDeleted) {
+      message.success('Article deleted successfully')
+      history.push('/')
+    } else {
+      message.error('Failed to delete article')
     }
   }
 

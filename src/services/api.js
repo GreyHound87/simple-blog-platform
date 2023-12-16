@@ -141,15 +141,21 @@ const api = {
   deleteArticle: async (slug) => {
     const url = `${API_BASE_URL}/articles/${slug}`
     const token = localStorage.getItem('authToken')
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
-    })
-    const data = await response.json()
-    return data
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: `Token ${token}`,
+        },
+      })
+      if (!response.ok) {
+        throw new Error(`Failed to delete article: ${response.statusText}`)
+      }
+      return true
+    } catch (error) {
+      return false
+    }
   },
   favoriteArticle: async (slug, favorited) => {
     const url = `${API_BASE_URL}/articles/${slug}/favorite`
