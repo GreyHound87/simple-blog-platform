@@ -1,9 +1,10 @@
+import generateHeaders from '../helpers/generate-headers'
+
 const API_BASE_URL = 'https://blog.kata.academy/api'
 
 const api = {
   fetchData: async (offset, limit) => {
     const url = `${API_BASE_URL}/articles`
-    const token = localStorage.getItem('authToken')
     const params = new URLSearchParams({
       offset,
       limit,
@@ -11,26 +12,20 @@ const api = {
 
     const requestOptions = {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token ? `Token ${token}` : '',
-      },
+      headers: generateHeaders(),
     }
 
     const response = await fetch(`${url}?${params}`, requestOptions)
     const data = await response.json()
     return data
   },
+
   getArticle: async (slug) => {
     const url = `${API_BASE_URL}/articles/${slug}`
-    const token = localStorage.getItem('authToken')
 
     const requestOptions = {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token ? `Token ${token}` : '',
-      },
+      headers: generateHeaders(),
     }
 
     const response = await fetch(url, requestOptions)
@@ -43,13 +38,12 @@ const api = {
     const data = await response.json()
     return data.article
   },
+
   registerUser: async (userData) => {
     const url = `${API_BASE_URL}/users`
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+      headers: generateHeaders(),
       body: JSON.stringify({ user: userData }),
     })
     const data = await response.json()
@@ -58,13 +52,12 @@ const api = {
     }
     return data
   },
+
   loginUser: async (credentials) => {
     const url = `${API_BASE_URL}/users/login`
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+      headers: generateHeaders(),
       body: JSON.stringify({ user: credentials }),
     })
     const data = await response.json()
@@ -73,16 +66,13 @@ const api = {
     }
     return data
   },
+
   reLoginUser: async () => {
     const url = `${API_BASE_URL}/user`
-    const token = localStorage.getItem('authToken')
 
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
+      headers: generateHeaders(),
     })
 
     if (!response.ok) {
@@ -96,13 +86,9 @@ const api = {
 
   updateUser: async (userDetails) => {
     const url = `${API_BASE_URL}/user`
-    const token = localStorage.getItem('authToken')
     const response = await fetch(url, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
+      headers: generateHeaders(),
       body: JSON.stringify({ user: userDetails }),
     })
 
@@ -110,44 +96,35 @@ const api = {
 
     return data
   },
+
   createArticle: async (articleData) => {
     const url = `${API_BASE_URL}/articles`
-    const token = localStorage.getItem('authToken')
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
+      headers: generateHeaders(),
       body: JSON.stringify({ article: articleData }),
     })
     const data = await response.json()
     return data
   },
+
   updateArticle: async (slug, articleData) => {
     const url = `${API_BASE_URL}/articles/${slug}`
-    const token = localStorage.getItem('authToken')
     const response = await fetch(url, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
+      headers: generateHeaders(),
       body: JSON.stringify({ article: articleData }),
     })
     const data = await response.json()
     return data
   },
+
   deleteArticle: async (slug) => {
     const url = `${API_BASE_URL}/articles/${slug}`
-    const token = localStorage.getItem('authToken')
     try {
       const response = await fetch(url, {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: `Token ${token}`,
-        },
+        headers: generateHeaders(),
       })
       if (!response.ok) {
         throw new Error(`Failed to delete article: ${response.statusText}`)
@@ -157,15 +134,12 @@ const api = {
       return false
     }
   },
+
   favoriteArticle: async (slug, favorited) => {
     const url = `${API_BASE_URL}/articles/${slug}/favorite`
-    const token = localStorage.getItem('authToken')
     const requestOptions = {
       method: favorited ? 'DELETE' : 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: `Token ${token}`,
-      },
+      headers: generateHeaders(),
     }
     const response = await fetch(url, requestOptions)
     const data = await response.json()
