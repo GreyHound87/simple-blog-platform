@@ -18,107 +18,113 @@ const authSlice = createSlice({
     loading: false,
   },
   reducers: {
-    logoutUser: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.user = null
-    },
-    clearError: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.error = null
-    },
+    logoutUser: (state) => ({
+      ...state,
+      user: null,
+    }),
+    clearError: (state) => ({
+      ...state,
+      error: null,
+    }),
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUserAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = true
-        // eslint-disable-next-line no-param-reassign
-        state.error = null
-      })
+      .addCase(registerUserAsync.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
       .addCase(registerUserAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
         if (action.payload.errors) {
-          // eslint-disable-next-line no-param-reassign
-          state.error = action.payload.errors
+          return {
+            ...state,
+            loading: false,
+            error: action.payload.errors,
+          }
         }
         if (action.payload.user) {
-          // eslint-disable-next-line no-param-reassign
-          state.user = action.payload.user
+          return {
+            ...state,
+            loading: false,
+            user: action.payload.user,
+          }
         }
+        return state
       })
-      .addCase(registerUserAsync.rejected, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.error = action.error.message
-      })
-      .addCase(loginUserAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = true
-        // eslint-disable-next-line no-param-reassign
-        state.error = null
-      })
+      .addCase(registerUserAsync.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.error.message,
+      }))
+      .addCase(loginUserAsync.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
       .addCase(loginUserAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
         if (action.payload.errors) {
-          // eslint-disable-next-line no-param-reassign
-          state.error = action.payload.errors
+          return {
+            ...state,
+            loading: false,
+            error: action.payload.errors,
+          }
         }
         if (action.payload.user) {
-          // eslint-disable-next-line no-param-reassign
-          state.user = action.payload.user
+          return {
+            ...state,
+            loading: false,
+            user: action.payload.user,
+          }
         }
+        return state
       })
-      .addCase(loginUserAsync.rejected, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.error = action.error.message
-      })
-      .addCase(reLoginUserAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = true
-        // eslint-disable-next-line no-param-reassign
-        state.error = null
-      })
-      .addCase(reLoginUserAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.user = action.payload
-      })
-      .addCase(reLoginUserAsync.rejected, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.error = action.error.message
-      })
-      .addCase(updateUserAsync.pending, (state) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = true
-        // eslint-disable-next-line no-param-reassign
-        state.error = null
-      })
+      .addCase(loginUserAsync.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.error.message,
+      }))
+      .addCase(reLoginUserAsync.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(reLoginUserAsync.fulfilled, (state, action) => ({
+        ...state,
+        loading: false,
+        user: action.payload,
+      }))
+      .addCase(reLoginUserAsync.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.error.message,
+      }))
+      .addCase(updateUserAsync.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
       .addCase(updateUserAsync.fulfilled, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
         if (action.payload.errors) {
-          // eslint-disable-next-line no-param-reassign
-          state.error = action.payload.errors
+          return {
+            ...state,
+            loading: false,
+            error: action.payload.errors,
+          }
         }
         if (action.payload.user) {
-          // eslint-disable-next-line no-param-reassign
-          state.user = action.payload.user
+          return {
+            ...state,
+            loading: false,
+            user: action.payload.user,
+          }
         }
+        return state
       })
-      .addCase(updateUserAsync.rejected, (state, action) => {
-        // eslint-disable-next-line no-param-reassign
-        state.loading = false
-        // eslint-disable-next-line no-param-reassign
-        state.error = action.error.message
-      })
+      .addCase(updateUserAsync.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        error: action.error.message,
+      }))
   },
 })
 

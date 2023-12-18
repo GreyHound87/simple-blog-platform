@@ -20,6 +20,7 @@ function EditProfile() {
   const onFinish = async (values) => {
     try {
       await dispatch(updateUserAsync(values))
+      history.push('/')
     } catch (err) {
       message.error('Error updating profile')
     }
