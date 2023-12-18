@@ -9,14 +9,14 @@ const articlesSlice = createSlice({
   name: 'articles',
   initialState,
   reducers: {
-    setArticles: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.articles = action.payload
-    },
-    setSelectedArticle: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.selectedArticle = action.payload
-    },
+    setArticles: (state, action) => ({
+      ...state,
+      articles: action.payload,
+    }),
+    setSelectedArticle: (state, action) => ({
+      ...state,
+      selectedArticle: action.payload,
+    }),
   },
 })
 
