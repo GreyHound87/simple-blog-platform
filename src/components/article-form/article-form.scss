@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .article-form {
   &_btn {
     width: 36.5%;
@@ -7,7 +9,7 @@
     }
     &--add-tag {
       border: 1px solid #1890ff;
-      color: #1890ff;
+      color: $primary-link-color;
       min-width: 136px;
     }
   }
@@ -30,9 +32,9 @@
 .description-label,
 .text-label,
 .tags-label {
-  color: #262626;
+  color: $primary-text-color;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: $font-size-regular;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
@@ -51,7 +53,7 @@
 
 .tag-wrapper {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: $margin-small;
 }
 
 .new-tag-input {

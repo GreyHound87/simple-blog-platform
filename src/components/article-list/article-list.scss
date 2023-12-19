@@ -1,7 +1,9 @@
+@import '../../variables.scss';
+
 .ant-pagination {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: $margin-large;
 }
 .list {
   max-width: 941px;
@@ -24,7 +26,7 @@
 } */
 
 .list .ant-pagination.ant-pagination-mini .ant-pagination-item {
-  margin: 0 5px;
+  margin: 0 $margin-small;
 }
 
 .list .ant-pagination-item-active {

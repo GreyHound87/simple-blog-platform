@@ -1,7 +1,9 @@
+@import '../../variables.scss';
+
 .username-label {
-  color: #262626;
+  color: $primary-text-color;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: $font-size-regular;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;

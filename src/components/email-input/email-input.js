@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input } from 'antd'
+import './email-input.scss'
 
 function EmailInput({ label, name, rules, validateStatus, marginBottom }) {
   return (

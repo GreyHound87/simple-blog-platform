@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input } from 'antd'
+import './password-input.scss'
 
 function PasswordInput({ label, name, rules, validateStatus, placeholder, marginBottom }) {
   return (

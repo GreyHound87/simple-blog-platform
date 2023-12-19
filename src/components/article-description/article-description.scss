@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .description-wrapper {
   display: flex;
   justify-content: space-between;
@@ -12,19 +14,19 @@
 .tag {
   min-width: 38px;
   min-height: 20px;
-  font-size: 12px;
+  font-size: $font-size-small;
   line-height: normal;
   padding: 0 7px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   &--in-card {
-    margin-top: 10px;
+    margin-top: $margin-medium;
   }
 }
 
 .created-date {
   &--in-card {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: $font-size-small;
     font-style: normal;
     font-weight: 400;
     line-height: 22px;

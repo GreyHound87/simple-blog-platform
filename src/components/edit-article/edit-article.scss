@@ -1,5 +1,7 @@
+@import '../../variables.scss';
+
 .article-container {
-  margin: 10px auto 0 auto;
+  margin: $margin-medium auto 0 auto;
   padding: 32px 30px 25px 30px;
   width: 876px;
   min-height: 637px;
@@ -11,9 +13,9 @@
 
 .form-header {
   font-family: 'Inter', sans-serif;
-  color: #262626;
+  color: $primary-text-color;
   text-align: center;
-  font-size: 20px;
+  font-size: $font-size-large;
   font-style: normal;
   font-weight: 500;
   line-height: 28px;

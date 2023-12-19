@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input } from 'antd'
+import './username-input.scss'
 
 function UsernameInput({ label, name, rules, validateStatus, marginBottom }) {
   return (
