@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { loginUserAsync, clearError } from '../../redux/slices/authSlice'
+import PasswordInput from '../password-input/password-input'
 import './login.scss'
 
 function Login() {
@@ -75,20 +76,16 @@ function Login() {
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="password-label">Password</span>}
+        <PasswordInput
+          label="Password"
           name="password"
           rules={[
             { required: true, message: 'Please enter your password' },
             { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error ? 'error' : ''}
-          style={{
-            marginBottom: '19px',
-          }}
-        >
-          <Input.Password className="password-input" placeholder="Password" />
-        </Form.Item>
+          marginBottom="19px"
+        />
 
         <Form.Item
           style={{

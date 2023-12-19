@@ -104,6 +104,7 @@ const api = {
         method: 'DELETE',
         headers: generateHeaders(),
       })
+      //  handleResponse не подходит для этого запроса
       if (!response.ok) {
         throw new Error(`Failed to delete article: ${response.statusText}`)
       }
