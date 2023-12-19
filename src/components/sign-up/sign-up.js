@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { registerUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
+import EmailInput from '../email-input/email-input'
 import './sign-up.scss'
 
 function Signup() {
@@ -79,26 +80,16 @@ function Signup() {
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="email-label">Email address</span>}
+        <EmailInput
+          label="Email address"
           name="email"
           rules={[
             { required: true, message: 'Please enter your email address.' },
             { type: 'email', message: 'Your email needs to be valid.' },
           ]}
           validateStatus={error && error.email ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input
-            className="email-input"
-            placeholder="Email address"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
         <PasswordInput
           label="Password"

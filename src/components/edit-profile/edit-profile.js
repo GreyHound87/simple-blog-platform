@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 import { updateUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
+import EmailInput from '../email-input/email-input'
 import './edit-profile.scss'
 
 function EditProfile() {
@@ -78,26 +79,16 @@ function EditProfile() {
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="email-label">Email address</span>}
+        <EmailInput
+          label="Email address"
           name="email"
           rules={[
             { required: true, message: 'Please enter your email address.' },
             { type: 'email', message: 'Your email needs to be valid.' },
           ]}
           validateStatus={error && error.email ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input
-            className="email-input"
-            placeholder="Email address"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
         <PasswordInput
           label="New password"

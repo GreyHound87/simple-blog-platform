@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { Form, Input, Button, message } from 'antd'
+import { Form, Button, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { loginUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
+import EmailInput from '../email-input/email-input'
 import './login.scss'
 
 function Login() {
@@ -55,26 +56,16 @@ function Login() {
         onFinish={onFinish}
         onFinishFailed={() => message.error('Failed')}
       >
-        <Form.Item
-          label={<span className="email-label">Email address</span>}
+        <EmailInput
+          label="Email address"
           name="email"
           rules={[
             { required: true, message: 'Please enter your email address' },
             { type: 'email', message: 'Your email needs to be valid' },
           ]}
           validateStatus={error ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input
-            className="email-input"
-            placeholder="Email address"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
         <PasswordInput
           label="Password"
