@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { registerUserAsync, clearError } from '../../redux/slices/authSlice'
+import PasswordInput from '../password-input/password-input'
 import './sign-up.scss'
 
 function Signup() {
@@ -99,29 +100,19 @@ function Signup() {
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="password-label">Password</span>}
+        <PasswordInput
+          label="Password"
           name="password"
           rules={[
             { required: true, message: 'Please enter your password.' },
             { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error && error.password ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input.Password
-            className="password-input"
-            placeholder="Password"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
-        <Form.Item
-          label={<span className="password-label">Repeat Password</span>}
+        <PasswordInput
+          label="Repeat Password"
           name="repeatPassword"
           dependencies={['password']}
           rules={[
@@ -136,18 +127,8 @@ function Signup() {
             }),
           ]}
           validateStatus={error && error.password ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input.Password
-            className="password-input"
-            placeholder="Password"
-            style={{
-              marginBottom: '20px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="20px"
+        />
 
         <Form.Item
           name="agreement"

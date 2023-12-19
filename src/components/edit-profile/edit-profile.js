@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { updateUserAsync, clearError } from '../../redux/slices/authSlice'
+import PasswordInput from '../password-input/password-input'
 import './edit-profile.scss'
 
 function EditProfile() {
@@ -98,26 +99,16 @@ function EditProfile() {
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="password-label">New password</span>}
+        <PasswordInput
+          label="New password"
           name="password"
           rules={[
             { required: true, message: 'Please enter your password.' },
             { min: 6, max: 40, message: 'Your password needs to be at least 6 to 40 characters.' },
           ]}
           validateStatus={error && error.password ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input.Password
-            className="password-input"
-            placeholder="New password"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
         <Form.Item
           label={<span className="avatar-label">Avatar image (url)</span>}
