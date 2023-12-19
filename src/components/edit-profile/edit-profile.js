@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { updateUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
 import EmailInput from '../email-input/email-input'
+import UsernameInput from '../username-input/username-input'
 import './edit-profile.scss'
 
 function EditProfile() {
@@ -58,26 +59,16 @@ function EditProfile() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <Form.Item
-          label={<span className="username-label">Username</span>}
+        <UsernameInput
+          label="Username"
           name="username"
           rules={[
             { required: true, message: 'Please enter your username.' },
             { min: 3, max: 20, message: 'Your username needs to be at least 3 to 20 characters.' },
           ]}
           validateStatus={error && error.username ? 'error' : ''}
-          style={{
-            marginBottom: '3px',
-          }}
-        >
-          <Input
-            className="username-input"
-            placeholder="Username"
-            style={{
-              marginBottom: '3px',
-            }}
-          />
-        </Form.Item>
+          marginBottom="3px"
+        />
 
         <EmailInput
           label="Email address"
