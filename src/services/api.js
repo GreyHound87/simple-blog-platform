@@ -1,7 +1,7 @@
 import generateHeaders from '../helpers/generate-headers'
+import handleResponse from '../helpers/handle-response'
 
 const API_BASE_URL = 'https://blog.kata.academy/api'
-
 const api = {
   fetchData: async (offset, limit) => {
     const url = `${API_BASE_URL}/articles`
@@ -9,33 +9,22 @@ const api = {
       offset,
       limit,
     })
-
     const requestOptions = {
       method: 'GET',
       headers: generateHeaders(),
     }
-
     const response = await fetch(`${url}?${params}`, requestOptions)
-    const data = await response.json()
-    return data
+    return handleResponse(response)
   },
 
   getArticle: async (slug) => {
     const url = `${API_BASE_URL}/articles/${slug}`
-
     const requestOptions = {
       method: 'GET',
       headers: generateHeaders(),
     }
-
     const response = await fetch(url, requestOptions)
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.errors.body[0] || 'Unexpected error')
-    }
-
-    const data = await response.json()
+    const data = await handleResponse(response)
     return data.article
   },
 
@@ -46,7 +35,7 @@ const api = {
       headers: generateHeaders(),
       body: JSON.stringify({ user: userData }),
     })
-    const data = await response.json()
+    const data = await response.json() //  handleResponse не применяю для корректного вывода сообщений пользователю
     if (data.user) {
       localStorage.setItem('authToken', data.user.token)
     }
@@ -60,7 +49,7 @@ const api = {
       headers: generateHeaders(),
       body: JSON.stringify({ user: credentials }),
     })
-    const data = await response.json()
+    const data = await response.json() //  handleResponse не применяю для корректного вывода сообщений пользователю
     if (data.user) {
       localStorage.setItem('authToken', data.user.token)
     }
@@ -69,18 +58,11 @@ const api = {
 
   reLoginUser: async () => {
     const url = `${API_BASE_URL}/user`
-
     const response = await fetch(url, {
       method: 'GET',
       headers: generateHeaders(),
     })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.errors.body[0] || 'Unexpected error')
-    }
-
-    const data = await response.json()
+    const data = await handleResponse(response)
     return data.user
   },
 
@@ -91,9 +73,7 @@ const api = {
       headers: generateHeaders(),
       body: JSON.stringify({ user: userDetails }),
     })
-
-    const data = await response.json()
-
+    const data = await response.json() //  handleResponse не применяю для корректного вывода сообщений пользователю
     return data
   },
 
@@ -104,8 +84,7 @@ const api = {
       headers: generateHeaders(),
       body: JSON.stringify({ article: articleData }),
     })
-    const data = await response.json()
-    return data
+    return handleResponse(response)
   },
 
   updateArticle: async (slug, articleData) => {
@@ -115,8 +94,7 @@ const api = {
       headers: generateHeaders(),
       body: JSON.stringify({ article: articleData }),
     })
-    const data = await response.json()
-    return data
+    return handleResponse(response)
   },
 
   deleteArticle: async (slug) => {
@@ -142,8 +120,7 @@ const api = {
       headers: generateHeaders(),
     }
     const response = await fetch(url, requestOptions)
-    const data = await response.json()
-    return data
+    return handleResponse(response)
   },
 }
 
