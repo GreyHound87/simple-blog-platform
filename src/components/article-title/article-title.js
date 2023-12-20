@@ -25,7 +25,7 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
   return (
     <div className={`title-wrapper ${inCard ? 'title-wrapper--in-card' : ''}`}>
       <div>
-        <Link to={`/articles/${slug}`} onClick={() => !inCard && handleTitleClick}>
+        <Link to={`/articles/${slug}`} target="_blank" onClick={() => !inCard && handleTitleClick}>
           <span className={`item-title ${inCard ? 'item-title--in-card' : ''}`}>{textCutter(title, 50)}</span>
         </Link>
         <ArticleRate slug={slug} favorited={favorited} onLikeUpdate={handleLikeUpdate} />
