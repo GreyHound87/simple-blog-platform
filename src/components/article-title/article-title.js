@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { setSelectedArticle } from '../../redux/slices/articlesSlice'
 import ArticleRate from '../article-rate/article-rate'
+import textCutter from '../../helpers/text-cutter'
 
 import './article-title.scss'
 
@@ -25,7 +26,7 @@ function ArticleTitle({ title, favoritesCount, authorUsername, article, slug, fa
     <div className={`title-wrapper ${inCard ? 'title-wrapper--in-card' : ''}`}>
       <div>
         <Link to={`/articles/${slug}`} onClick={() => !inCard && handleTitleClick}>
-          <span className={`item-title ${inCard ? 'item-title--in-card' : ''}`}>{title}</span>
+          <span className={`item-title ${inCard ? 'item-title--in-card' : ''}`}>{textCutter(title, 50)}</span>
         </Link>
         <ArticleRate slug={slug} favorited={favorited} onLikeUpdate={handleLikeUpdate} />
         <span className={`rate-count ${inCard ? 'rate-count--in-card' : ''}`}>{currentFavoritesCount}</span>
