@@ -1,4 +1,4 @@
-function textCutter(text, maxLength) {
+function textCutter(text = '', maxLength = 0) {
   if (text.length <= maxLength) {
     return text
   }

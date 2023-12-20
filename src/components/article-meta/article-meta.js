@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import api from '../../services/api'
+import textCutter from '../../helpers/text-cutter'
 
 import './article-meta.scss'
 
@@ -29,7 +30,7 @@ function ArticleMeta({ description, slug, author }) {
 
   return (
     <div className="meta-container">
-      <span className="article-description--meta">{description}</span>
+      <span className="article-description--meta">{textCutter(description, 400)}</span>
       {isAuthor && (
         <div className="meta-btn-wrapper">
           <Popconfirm

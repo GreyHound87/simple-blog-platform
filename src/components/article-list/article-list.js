@@ -7,6 +7,7 @@ import ArticleTitle from '../article-title/article-title'
 import ArticleDescription from '../article-description/article-description'
 import ResIcon from '../res-icon/res-icon'
 import api from '../../services/api'
+import textCutter from '../../helpers/text-cutter'
 
 import './article-list.scss'
 
@@ -79,7 +80,7 @@ function ArticleList() {
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
           <Spin spinning={loading} size="large">
-            <span className="list-item-descr">{item.description}</span>
+            <span className="list-item-descr">{textCutter(item.description, 360)}</span>
           </Spin>
         </List.Item>
       )}
