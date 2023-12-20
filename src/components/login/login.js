@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
 import EmailInput from '../email-input/email-input'
+import noUppercaseRule from '../../helpers/no-uppercase-rule'
 import './login.scss'
 
 function Login() {
@@ -62,6 +63,7 @@ function Login() {
           rules={[
             { required: true, message: 'Please enter your email address' },
             { type: 'email', message: 'Your email needs to be valid' },
+            noUppercaseRule,
           ]}
           validateStatus={error ? 'error' : ''}
           marginBottom="3px"

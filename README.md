@@ -2,21 +2,11 @@
 
 Адаптивная верстка?
 
-поработал с useSearchParams(router v6) или способа, описанного в 4.2.8, чтобы после перезагрузки оставалась текущая страница пагинации, чтобы при переходе на стаью и нажатии кнопки "назад" в браузере пырекидывало на страницу с которой и перешли на данную статью.
+поработал с useSearchParams(router v6) или способа, описанного в 4.2.8, чтобы после перезагрузки оставалась текущая страница пагинации, чтобы при переходе на стаью и нажатии кнопки "назад" в браузере пырекидывало на страницу с которой и перешли на данную статью. ?!!
 
-Страница входа (/sign-in - Страница входа.)
 
-Форма логина
 
-Механизм аутентификации
 
-headers: { Authorization: `Token ${token}`, },
-
-пример: fetch('https://conduit.productionready.io/api/articles', { headers: { 'Authorization': 'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW52YWx1Y2hldmFsZXgxOTk2QGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiSXZhbjI4czE5OTYiLCJpYXQiOjE2ODEyMzM0OTksasdqwegImV4cCI6MTY4NjQxNzQ5OX0.P4kIOWRpEVxTFq0ZieAZpT7hgN7xEVEEdDwuGYUpJKk' } }) .then(response => response.json()) .then(data => console.log(data)) .catch(error => console.error(error));
-
-Клиентская валидация (библиотекой React Hook Form)
-
-email должен быть не пустой, должен быть корректным почтовым адресом
 
 регестрируйте mail с маленькой буквы( либо сделайте сразу валидацию чтобы принимало с маленькой только) иначе он пропускает зарегать с маленькой
 

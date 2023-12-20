@@ -7,6 +7,7 @@ import { updateUserAsync, clearError } from '../../redux/slices/authSlice'
 import PasswordInput from '../password-input/password-input'
 import EmailInput from '../email-input/email-input'
 import UsernameInput from '../username-input/username-input'
+import noUppercaseRule from '../../helpers/no-uppercase-rule'
 import './edit-profile.scss'
 
 function EditProfile() {
@@ -65,6 +66,7 @@ function EditProfile() {
           rules={[
             { required: true, message: 'Please enter your username.' },
             { min: 3, max: 20, message: 'Your username needs to be at least 3 to 20 characters.' },
+            noUppercaseRule,
           ]}
           validateStatus={error && error.username ? 'error' : ''}
           marginBottom="3px"
@@ -76,6 +78,7 @@ function EditProfile() {
           rules={[
             { required: true, message: 'Please enter your email address.' },
             { type: 'email', message: 'Your email needs to be valid.' },
+            noUppercaseRule,
           ]}
           validateStatus={error && error.email ? 'error' : ''}
           marginBottom="3px"
