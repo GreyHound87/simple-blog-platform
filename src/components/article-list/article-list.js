@@ -80,7 +80,7 @@ function ArticleList() {
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
           />
           <Spin spinning={loading} size="large">
-            <span className="list-item-descr">{textCutter(item.description, 360)}</span>
+            <span className="list-item-descr">{textCutter(item.description, 400)}</span>
           </Spin>
         </List.Item>
       )}

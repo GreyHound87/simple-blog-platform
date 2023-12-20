@@ -85,7 +85,7 @@ function SingleArticle() {
         className="card-meta"
         description={<ArticleMeta description={description} slug={slug} author={author.username} />}
       />
-      <ReactMarkdown>{body}</ReactMarkdown>
+      <ReactMarkdown className="card-body">{body}</ReactMarkdown>
     </Card>
   )
 }

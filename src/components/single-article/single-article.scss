@@ -5,6 +5,12 @@
   padding-top: 10px;
 }
 
+.card-body {
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* .card-meta {
     width: 100%;
 } */

@@ -7,6 +7,9 @@
 
 .article-description--meta {
   max-width: 83%;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .meta-btn-wrapper {
