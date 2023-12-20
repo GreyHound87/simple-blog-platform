@@ -2,10 +2,10 @@ function textCutter(text = '', maxLength = 0) {
   if (text.length <= maxLength) {
     return text
   }
-  const truncatedText = text.substr(0, maxLength)
+  const truncatedText = text.substring(0, maxLength)
   const lastSpaceIndex = truncatedText.lastIndexOf(' ')
   if (lastSpaceIndex !== -1) {
-    return `${truncatedText.substr(0, lastSpaceIndex)}...`
+    return `${truncatedText.substring(0, lastSpaceIndex)}...`
   }
   return `${truncatedText}...`
 }
