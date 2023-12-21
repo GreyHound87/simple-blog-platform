@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button, Tag } from 'antd'
+
 import './article-form.scss'
 
 function ArticleForm({ onSubmit, initialValues }) {
@@ -7,8 +8,22 @@ function ArticleForm({ onSubmit, initialValues }) {
   const [tagInput, setTagInput] = useState('')
 
   const handleTagAdd = () => {
-    if (tagInput.trim() !== '' && !tagList.includes(tagInput)) {
-      setTagList([...tagList, tagInput.trim()])
+    const trimmedInput = tagInput.trim()
+    if (trimmedInput !== '') {
+      const cleanedTags = trimmedInput.split(' ').map((tag) => tag.replace(/[^a-zA-Zа-яА-я0-9]/g, ''))
+
+      setTagList((prevTagList) => {
+        const updatedTagList = [...prevTagList]
+
+        cleanedTags.forEach((newTag) => {
+          if (newTag !== '' && !updatedTagList.includes(newTag)) {
+            updatedTagList.push(newTag)
+          }
+        })
+
+        return updatedTagList
+      })
+
       setTagInput('')
     }
   }
