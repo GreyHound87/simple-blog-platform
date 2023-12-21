@@ -135,6 +135,7 @@ function ArticleForm({ onSubmit, initialValues }) {
               style={{
                 marginBottom: '3px',
               }}
+              maxLength={50}
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onPressEnter={(e) => {
