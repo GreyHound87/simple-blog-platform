@@ -52,7 +52,10 @@ function ArticleForm({ onSubmit, initialValues }) {
       <Form.Item
         label={<span className="title-label">Title</span>}
         name="title"
-        rules={[{ required: true, message: 'Please enter the title' }]}
+        rules={[
+          { required: true, message: 'Please enter the title' },
+          { max: 50, message: 'Title should not exceed 50 characters.' },
+        ]}
         style={{
           marginBottom: '3px',
         }}
@@ -69,7 +72,10 @@ function ArticleForm({ onSubmit, initialValues }) {
       <Form.Item
         label={<span className="description-label">Short Description</span>}
         name="description"
-        rules={[{ required: true, message: 'Please enter a short description' }]}
+        rules={[
+          { required: true, message: 'Please enter a short description' },
+          { max: 400, message: 'Description should not exceed 400 characters.' },
+        ]}
         style={{
           marginBottom: '3px',
         }}
