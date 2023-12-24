@@ -50,6 +50,7 @@ function ArticleForm({ onSubmit, initialValues }) {
       onFinish={handleSubmit}
     >
       <Form.Item
+        htmlFor="titleInput"
         label={<span className="title-label">Title</span>}
         name="title"
         rules={[
@@ -61,6 +62,7 @@ function ArticleForm({ onSubmit, initialValues }) {
         }}
       >
         <Input
+          id="titleInput"
           className="title-input"
           placeholder="Title"
           style={{
@@ -70,6 +72,7 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item
+        htmlFor="descriptionInput"
         label={<span className="description-label">Short Description</span>}
         name="description"
         rules={[
@@ -81,6 +84,7 @@ function ArticleForm({ onSubmit, initialValues }) {
         }}
       >
         <Input.TextArea
+          id="descriptionInput"
           className="description-input"
           placeholder="Short Description"
           rows={1}
@@ -92,6 +96,7 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item
+        htmlFor="textInput"
         label={<span className="text-label">Text</span>}
         name="body"
         rules={[{ required: true, message: 'Please enter the text' }]}
@@ -100,6 +105,7 @@ function ArticleForm({ onSubmit, initialValues }) {
         }}
       >
         <Input.TextArea
+          id="textInput"
           className="text-input"
           placeholder="Text"
           rows={5}
@@ -111,13 +117,14 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
 
       <Form.Item
+        htmlFor="tagInput"
         label={<span className="tags-label">Tags</span>}
         name="tagList"
         style={{
           marginBottom: '16px',
         }}
       >
-        <>
+        <div>
           <div className="tags-wrapper">
             {tagList.map((tag) => (
               <div key={tag} className="tag-wrapper">
@@ -130,6 +137,7 @@ function ArticleForm({ onSubmit, initialValues }) {
           </div>
           <div className="new-tag-wrapper">
             <Input
+              id="tagInput"
               className="new-tag-input"
               placeholder="Tag"
               style={{
@@ -150,7 +158,7 @@ function ArticleForm({ onSubmit, initialValues }) {
               Add Tag
             </Button>
           </div>
-        </>
+        </div>
       </Form.Item>
 
       <Form.Item>
