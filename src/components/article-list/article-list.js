@@ -78,6 +78,7 @@ function ArticleList() {
               </Spin>
             }
             description={<ArticleDescription tagList={item.tagList} createdAt={item.createdAt} />}
+            style={{ maxWidth: '848px' }}
           />
           <Spin spinning={loading} size="large">
             <span className="list-item-descr">{textCutter(item.description, 400)}</span>
