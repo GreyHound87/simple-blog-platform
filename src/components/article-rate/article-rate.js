@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Rate, message } from 'antd'
+import PropTypes from 'prop-types'
 import './article-rate.scss'
 
 import api from '../../services/api'
@@ -39,7 +40,8 @@ function ArticleRate({ slug, favorited, onLikeUpdate }) {
     maxCount: 1,
   })
 
-  const handleFavoriteArticle = async () => {
+  //  useCallback для предотвращения повторного создания функции при каждом рендере
+  const handleFavoriteArticle = useCallback(async () => {
     try {
       const response = await api.favoriteArticle(slug, favorited)
 
@@ -52,7 +54,7 @@ function ArticleRate({ slug, favorited, onLikeUpdate }) {
     } catch (error) {
       message.error('Failed to rate article')
     }
-  }
+  }, [slug, favorited, onLikeUpdate])
 
   const character = ({ value }) => (value === 1 ? <span>{filledSvg}</span> : <span>{defaultSvg}</span>)
 
@@ -66,6 +68,12 @@ function ArticleRate({ slug, favorited, onLikeUpdate }) {
       disabled={!authToken}
     />
   )
+}
+
+ArticleRate.propTypes = {
+  slug: PropTypes.string.isRequired,
+  favorited: PropTypes.bool.isRequired,
+  onLikeUpdate: PropTypes.func.isRequired,
 }
 
 export default ArticleRate
