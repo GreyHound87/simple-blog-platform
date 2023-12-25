@@ -77,7 +77,14 @@ function SingleArticle() {
       }
       extra={
         <Spin spinning={loading} size="large">
-          <Avatar src={author.image} size={46} icon={<ResIcon />} alt="Author Avatar" />
+          <Avatar
+            src={
+              author.image === 'https://static.productionready.io/images/smiley-cyrus.jpg' ? <ResIcon /> : author.image
+            }
+            size={46}
+            icon={<ResIcon />}
+            alt="Author Avatar"
+          />
         </Spin>
       }
     >

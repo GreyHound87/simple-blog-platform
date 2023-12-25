@@ -59,7 +59,19 @@ function ArticleList() {
           key={item.slug}
           extra={
             <Spin spinning={loading} size="large">
-              <Avatar className="avatar" src={item.author.image} icon={<ResIcon />} size={46} alt="Author Avatar" />
+              <Avatar
+                className="avatar"
+                src={
+                  item.author.image === 'https://static.productionready.io/images/smiley-cyrus.jpg' ? (
+                    <ResIcon />
+                  ) : (
+                    item.author.image
+                  )
+                }
+                icon={<ResIcon />}
+                size={46}
+                alt="Author Avatar"
+              />
             </Spin>
           }
           className="item"
