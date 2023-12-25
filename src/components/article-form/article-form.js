@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button, Tag } from 'antd'
+import PropTypes from 'prop-types'
 
 import './article-form.scss'
 
@@ -164,6 +165,20 @@ function ArticleForm({ onSubmit, initialValues }) {
       </Form.Item>
     </Form>
   )
+}
+
+ArticleForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    body: PropTypes.string,
+    tagList: PropTypes.arrayOf(PropTypes.string),
+  }),
+}
+
+ArticleForm.defaultProps = {
+  initialValues: {},
 }
 
 export default ArticleForm
