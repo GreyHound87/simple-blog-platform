@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Popconfirm, message } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import api from '../../services/api'
 import textCutter from '../../helpers/text-cutter'
@@ -52,6 +53,12 @@ function ArticleMeta({ description, slug, author }) {
       )}
     </div>
   )
+}
+
+ArticleMeta.propTypes = {
+  description: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 }
 
 export default ArticleMeta
