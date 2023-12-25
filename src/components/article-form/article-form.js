@@ -13,14 +13,10 @@ function ArticleForm({ onSubmit, initialValues }) {
       const cleanedTags = trimmedInput.split(' ').map((tag) => tag.replace(/[^a-zA-Zа-яА-я0-9]/g, ''))
 
       setTagList((prevTagList) => {
-        const updatedTagList = [...prevTagList]
-
-        cleanedTags.forEach((newTag) => {
-          if (newTag !== '' && !updatedTagList.includes(newTag)) {
-            updatedTagList.push(newTag)
-          }
-        })
-
+        const updatedTagList = [
+          ...prevTagList,
+          ...cleanedTags.filter((newTag) => newTag && !prevTagList.includes(newTag)),
+        ]
         return updatedTagList
       })
 
