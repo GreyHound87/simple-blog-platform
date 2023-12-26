@@ -31,7 +31,7 @@ PasswordInput.propTypes = {
 
 PasswordInput.defaultProps = {
   validateStatus: '',
-  placeholder: 'placeholder',
+  placeholder: 'Password',
   marginBottom: '0',
 }
 
