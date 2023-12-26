@@ -1,13 +1,20 @@
 function textCutter(text = '', maxLength = 0) {
+  if (typeof text !== 'string' || typeof maxLength !== 'number' || maxLength <= 0) {
+    return text
+  }
+
   if (text.length <= maxLength) {
     return text
   }
-  const truncatedText = text.substring(0, maxLength)
-  const lastSpaceIndex = truncatedText.lastIndexOf(' ')
+
+  const trimmedText = text.substring(0, maxLength)
+  const lastSpaceIndex = trimmedText.lastIndexOf(' ')
+
   if (lastSpaceIndex !== -1) {
-    return `${truncatedText.substring(0, lastSpaceIndex)}...`
+    return `${trimmedText.substring(0, lastSpaceIndex)}...`
   }
-  return `${truncatedText}...`
+
+  return `${trimmedText}...`
 }
 
 export default textCutter
